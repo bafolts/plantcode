@@ -1,10 +1,8 @@
 #plantuml-code-generator
-=======================
 
 Provides a utility to generate code in various languages given a plantuml class diagram.
 
 ##PEG.js
---------------------
 The most recent version of [PlantUML](http://plantuml.sourceforge.net/) does not have a defined grammar to use with
 parsing the PlantUML code. Below is a guess as to what the grammer for
 the language should be, relative to the [PEG.js](https://github.com/dmajda/pegjs) parser. This creates
@@ -112,14 +110,12 @@ protectedaccessor
 ```
 
 ##Goals
--------------------
 Initially this project will only run with node.js and output coffeescript classes.
 The general idea is that, given any PlantUML file, we will be able
 to generate class files in any output language. Eventually moving on from node.js and supporting
 other tools to use for conversion.
 
 ##Example
--------------------
 
 The current example is very basic and features a common example of a car.
 
@@ -148,6 +144,7 @@ Ford --|> Car
 ```
 
 ###CoffeeScript Produced:
+
 ```coffeescript
 class Car
 	getModel: -> 
@@ -162,6 +159,7 @@ class Ford extends Car
 ```
 
 ###Running:
+
 ```
 node plantcode tests/car.pegjs >> tests/car.coffee
 ```
