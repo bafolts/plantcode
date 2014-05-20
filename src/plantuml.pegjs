@@ -79,7 +79,7 @@ methoddeclaration
 methodparameters
   = items:methodparameter* { return items; }
 methodparameter
-  = noise item:returntype [,]? { var Parameter = require("./Parameter"); return new Parameter(item); }
+  = noise item:returntype membername:([ ] membername)? [,]? { var Parameter = require("./Parameter"); return new Parameter(item, membername ? membername[1] : null); }
 returntype
   = items:[^ ,\n\r\t(){}]+ { return items.join("") }
 objectname

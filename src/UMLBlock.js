@@ -22,10 +22,8 @@ module.exports = (function () {
     this.setupConnections();
   }
 
-  UMLBlock.prototype.generateClassFiles = function () {
-    for (var i = 0, length = this.aClasses.length; i < length; i++) {
-      this.aClasses[i].generateFile();
-    }
+  UMLBlock.prototype.getClasses = function () {
+    return this.aClasses;
   }
 
   UMLBlock.prototype.getItems = function () {

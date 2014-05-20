@@ -90,7 +90,7 @@ methoddeclaration
 methodparameters
   = items:methodparameter* { return items; }
 methodparameter
-  = noise item:returntype [,]? { var Parameter = require("./Parameter"); return new Parameter(item); }
+  = noise item:returntype membername:([ ] membername)? [,]? { var Parameter = require("./Parameter"); return new Parameter(item, membername ? membername[1] : null); }
 returntype
   = items:[^ ,\n\r\t(){}]+ { return items.join("") }
 objectname
@@ -127,6 +127,9 @@ The current example is very basic and features a common example of a car.
 hide empty members
 
 abstract Car {
+  + void setModel(String model)
+  + void setMake(String make)
+  + void setYear(Number)
   + String getModel()
   + String getMake()
   + Number getYear()
@@ -147,9 +150,18 @@ Ford --|> Car
 
 ```coffeescript
 class Car
-	getModel: -> 
-	getMake: -> 
-	getYear: -> 
+
+  setModel: (model) ->
+
+  setMake: (make) ->
+
+  setYear: (paramX) ->
+
+  getModel:  ->
+
+  getMake:  ->
+
+  getYear:  ->
 
 class Toyota extends Car
 

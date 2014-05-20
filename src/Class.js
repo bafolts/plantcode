@@ -63,40 +63,6 @@ module.exports = (function () {
     }
   }
 
-  Class.prototype.generateFile = function () {
-    var aOutput = [];
-    aOutput.push("class " + this.getFullName());
-    if (this.getExtends() !== null) {
-      aOutput.push(" extends " + this.getExtends().getFullName());
-    }
-    aOutput.push("\r\n");
-    var aFields = this.getFields();
-    var aMethods = this.getMethods();
-    //for (var i = 0, length = aFields.length; i < length; i++) {
-    //  aOutput.push("\tthis." + this.fileLines[i].getName() + " = null;\r\n");
-    //}
-    for (var i = 0, length = aMethods.length; i < length; i++) {
-      aOutput.push("\t" + aMethods[i].getName() + ": -> ");
-      if (aMethods[i].getParameters().length > 0) {
-        aOutput.push("(");
-        var aParameters = aMethods[i].getParameters();
-        for (var j = 0, lengthJ = aParameters.length; j < lengthJ; j++) {
-          if (j > 0) {
-            aOutput.push(", ");
-          }
-          if (aParameters[j].getName()===null) {
-            aOutput.push("param" + j);
-          } else {
-            aOutput.push(aParameters[j].getName());
-          }
-        }
-        aOutput.push(")");
-      }
-      aOutput.push("\r\n");
-    }
-    console.log(aOutput.join(""));
-  }
-
   return Class;
 
 })()

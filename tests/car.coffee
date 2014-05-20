@@ -1,7 +1,16 @@
 class Car
-	getModel: -> 
-	getMake: -> 
-	getYear: -> 
+
+  setModel: (model) ->
+
+  setMake: (make) ->
+
+  setYear: (paramX) ->
+
+  getModel:  ->
+
+  getMake:  ->
+
+  getYear:  ->
 
 class Toyota extends Car
 

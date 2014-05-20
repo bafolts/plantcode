@@ -1,14 +1,9 @@
 
 module.exports = (function () {
 
-  var Parameter = function (parameterString) {
-    var aItems = parameterString.split(" ");
-    this.sReturnType = aItems[0];
-    if (aItems.length > 1) {
-      this.sParameterName = aItems[1];
-    } else {
-      this.sParameterName = null;
-    }
+  var Parameter = function (returnType, memberName) {
+    this.sReturnType = returnType;
+    this.sParameterName = memberName;
   }
 
   Parameter.prototype.getName = function () {
