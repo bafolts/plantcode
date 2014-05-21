@@ -1,6 +1,13 @@
 #plantuml-code-generator
 
-Provides a utility to generate code in various languages given a plantuml class diagram.
+Provides a command line utility to generate code in various languages given a plantuml class diagram.
+
+##Command line options
+
+###-l/--language The language to output to.
+The currently supported languages are
+* CoffeeScript (coffeescript)
+* TypeScript (typescript)
 
 ##PEG.js
 The most recent version of [PlantUML](http://plantuml.sourceforge.net/) does not have a defined grammar to use with
