@@ -1,0 +1,7 @@
+class {{getFullName}}{{#if getExtends}} extends {{#with getExtends}}{{getFullName}}{{/with}}{{/if}} {
+{{#each getMethods}}
+  {{this.getName}}{{#if this.getParameters}}({{#each this.getParameters}}{{#if @first}}{{else}},{{/if}}{{#if this.getName}}{{this.getName}}{{else}}paramX{{/if}}{{/each}}){{else}}(){{/if}} {
+    return;
+  }
+{{/each}}
+}
