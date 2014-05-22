@@ -21,7 +21,7 @@ Options:
 ```
 
 The currently supported languages are
-* CoffeeScript (coffeescript)
+* CoffeeScript (coffeescript) [default]
 * Java (java)
 * TypeScript (typescript)
 
@@ -196,5 +196,6 @@ class Ford extends Car
 ###Running:
 
 ```
-node plantcode tests/car.pegjs >> tests/car.coffee
+npm install
+plantcode -l coffescript tests/car.pegjs > tests/car.coffee
 ```
