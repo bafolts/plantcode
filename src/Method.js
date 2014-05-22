@@ -6,9 +6,18 @@ module.exports = (function () {
 
   var Method = function (accessType, returnType, fieldName, aParameters) {
     this.aParameters = aParameters;
+    this.sReturnType = returnType;
     Method.super_.call(this, accessType, returnType, fieldName);
   }
   util.inherits(Method, Field);
+  
+  Method.prototype.getReturnType = function () {
+    return this.sReturnType;
+  }
+  
+  Method.prototype.needsReturnStatement = function () {
+    return this.sReturnType !== "void";
+  }
   
   Method.prototype.getParameters = function () {
     return this.aParameters;

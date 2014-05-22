@@ -5,6 +5,10 @@ module.exports = (function () {
     this.sReturnType = returnType;
     this.sParameterName = memberName;
   }
+  
+  Parameter.prototype.getReturnType = function () {
+    return this.sReturnType;
+  }
 
   Parameter.prototype.getName = function () {
     return this.sParameterName;

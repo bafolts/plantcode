@@ -4,6 +4,9 @@
   "description": "PlantUML to class file generator.",
   "author": "Brian Folts <brian.folts@gmail.com>",
   "main": "plantcode",
+  "scripts": {
+    "test": "plantcode -l java tests/car.pegjs > tests/car.java && plantcode -l coffeescript tests/car.pegjs > tests/car.coffee && plantcode -l typescript tests/car.pegjs > tests/car.ts"
+  },
   "bin": "plantcode",
   "repository": {
     "type": "git",

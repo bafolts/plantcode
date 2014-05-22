@@ -9,6 +9,8 @@ var options = {
   language: "coffeescript"
 };
 
+var supported_languages = ["coffeescript", "java", "typescript"];
+
 var args = process.argv.slice(2); // Trim "node" and the script path.
 
 if (args.length === 0) {
@@ -17,12 +19,32 @@ if (args.length === 0) {
   processArguments();
 }
 
+function printLanguages() {
+  util.puts("Currently supported output languages:");
+  supported_languages.forEach(function (item) {
+    util.puts(item);
+  })
+  exitSuccess();
+}
+
 function printUsage() {
-  util.puts("plantcode inputFile");
+  util.puts("Usage: plantcode [options] <inputFile>");
+  util.puts("");
+  util.puts("Generates classfile(s) for the provided PlantUML file specified by <input_file> and writes to standard output.");
+  util.puts("");
+  util.puts("Options:");
+  util.puts("  -l, --language <language>          name of the programming language");
+  util.puts("                                     which the produced class files")
+  util.puts("                                     will be written in");
+  util.puts("      --show-languages               displays all the current supported");
+  util.puts("                                     programming languages for use")
+  util.puts("                                     for with the language option");
+  util.puts("  -h, --help                         print help and exit");
+  exitSuccess();
 }
 
 function isValidLanguage(language) {
-  return language === "coffeescript" || language === "typescript";
+  return supported_languages.indexOf(language) !== -1;
 }
 
 function processArguments() {
@@ -38,6 +60,16 @@ function processArguments() {
           abort("Invalid language provided.");
         }
         options.language = args[0];
+        break;
+      case "--show-languages":
+        printLanguages();
+        break;
+      case "-h":
+      case "--help":
+        printUsage();
+        break;
+      default:
+        abort("Invalid option " + args[0]);
         break;
     }
     nextArg();
@@ -61,6 +93,10 @@ function processArguments() {
 
 function exitFailure() {
   process.exit(1);
+}
+
+function exitSuccess() {
+  process.exit(0);
 }
 
 function abort(message) {

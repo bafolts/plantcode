@@ -4,9 +4,25 @@ Provides a command line utility to generate code in various languages given a pl
 
 ##Command line options
 
-###-l/--language The language to output to.
+```shell
+Usage: plantcode [options] <inputFile>
+
+Generates classfile(s) for the provided PlantUML file specified by <input_file>
+and writes to standard output.
+
+Options:
+  -l, --language <language>          name of the programming language
+                                     which the produced class files
+                                     will be written in
+      --show-languages               displays all the current supported
+                                     programming languages for use
+                                     for with the language option
+  -h, --help                         print help and exit
+```
+
 The currently supported languages are
 * CoffeeScript (coffeescript)
+* Java (java)
 * TypeScript (typescript)
 
 ##PEG.js
