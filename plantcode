@@ -9,7 +9,7 @@ var options = {
   language: "coffeescript"
 };
 
-var supported_languages = ["coffeescript", "java", "typescript"];
+var supported_languages = ["coffeescript", "java", "ruby", "typescript"];
 
 var args = process.argv.slice(2); // Trim "node" and the script path.
 
@@ -20,7 +20,6 @@ if (args.length === 0) {
 }
 
 function printLanguages() {
-  util.puts("Currently supported output languages:");
   supported_languages.forEach(function (item) {
     util.puts(item);
   })
@@ -116,13 +115,13 @@ function processInputFile(data) {
   try {
     var aUMLBlocks = parser.parse(data);
   } catch(e) {
-    util.puts("Error parsing input file: ", e);
+    abort("Error parsing input file: ", e);
   }
   fs.readFile("templates/" + options.language + ".hbs", { encoding: "UTF-8" }, function (err, data) {
     if (err === null) {
       processTemplateFile(data, aUMLBlocks);
     } else {
-      util.puts("Unable to read template file.");
+      abort("Unable to read template file for " + options.language + ".");
     }
   });
 }

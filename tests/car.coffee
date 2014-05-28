@@ -4,7 +4,7 @@ class Car
 
   setMake: (make) ->
 
-  setYear: (paramX) ->
+  setYear: (param0) ->
 
   getModel:  ->
 

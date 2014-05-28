@@ -23,6 +23,7 @@ Options:
 The currently supported languages are
 * CoffeeScript (coffeescript) [default]
 * Java (java)
+* Ruby (ruby)
 * TypeScript (typescript)
 
 ##PEG.js

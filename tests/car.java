@@ -8,7 +8,7 @@ abstract class Car {
     
   }
 
-  public void setYear(Number paramX) {
+  public void setYear(Number param0) {
     
   }
 

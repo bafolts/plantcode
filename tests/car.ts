@@ -8,7 +8,7 @@ class Car {
     return;
   }
 
-  setYear(paramX) {
+  setYear(param0) {
     return;
   }
 
