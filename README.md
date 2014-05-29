@@ -14,6 +14,7 @@ Options:
   -l, --language <language>          name of the programming language
                                      which the produced class files
                                      will be written in
+  -o, --out <output_path>            the path to output the file(s) to
       --show-languages               displays all the current supported
                                      programming languages for use
                                      for with the language option
