@@ -23,6 +23,7 @@ Options:
 
 The currently supported languages are
 * CoffeeScript (coffeescript) [default]
+* C# (csharp)
 * Java (java)
 * PHP (php)
 * Ruby (ruby)
@@ -201,4 +202,9 @@ class Ford extends Car
 ```
 npm install
 plantcode -l coffescript tests/car.pegjs > tests/car.coffee
+```
+
+###Testing:
+```
+npm test
 ```
