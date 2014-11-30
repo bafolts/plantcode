@@ -5,7 +5,7 @@
   "author": "Brian Folts <brian.folts@gmail.com>",
   "main": "plantcode",
   "scripts": {
-    "test": "plantcode -l java tests/car.pegjs > tests/car.java && plantcode -l coffeescript tests/car.pegjs > tests/car.coffee && plantcode -l typescript tests/car.pegjs > tests/car.ts && plantcode -l ruby tests/car.pegjs > tests/car.rb && plantcode -l php tests/car.pegjs > tests/car.php"
+    "test": "node plantcode -l csharp tests/car.pegjs > tests/car.cs && node plantcode -l java tests/car.pegjs > tests/car.java && node plantcode -l coffeescript tests/car.pegjs > tests/car.coffee && node plantcode -l typescript tests/car.pegjs > tests/car.ts && node plantcode -l ruby tests/car.pegjs > tests/car.rb && node plantcode -l php tests/car.pegjs > tests/car.php"
   },
   "bin": "plantcode",
   "repository": {
