@@ -1,4 +1,7 @@
 {{#if isAbstract}}abstract {{/if}}class {{getFullName}}{{#if getExtends}} extends {{#with getExtends}}{{getFullName}}{{/with}}{{/if}} {
+{{#each getFields}}
+  private {{this.getReturnType}} {{this.getName}};
+{{/each}}
 {{#each getMethods}}
   public {{this.getReturnType}} {{this.getName}}{{#if this.getParameters}}({{#each this.getParameters}}{{#if @first}}{{else}},{{/if}}{{this.getReturnType}} {{#if this.getName}}{{this.getName}}{{else}}param{{@index}}{{/if}}{{/each}}){{else}}(){{/if}} {
     {{#if this.needsReturnStatement}}

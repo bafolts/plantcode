@@ -1,5 +1,8 @@
 <?php
 {{#if isAbstract}}abstract {{/if}}class {{getFullName}}{{#if getExtends}} extends {{#with getExtends}}{{getFullName}}{{/with}}{{/if}} {
+{{#each getFields}}
+  private {{this.getName}};
+{{/each}}
 {{#each getMethods}}
   public function {{this.getName}}{{#if this.getParameters}}({{#each this.getParameters}}{{#if @first}}{{else}},{{/if}}{{#if this.getName}}${{this.getName}}{{else}}$param{{@index}}{{/if}}{{/each}}){{else}}(){{/if}} {
     {{#if this.needsReturnStatement}}

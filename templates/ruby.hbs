@@ -1,4 +1,7 @@
 class {{getFullName}}{{#if getExtends}} < {{#with getExtends}}{{getFullName}}{{/with}}{{/if}}
+{{#each getFields}}
+  @{{this.getName}}
+{{/each}}
 {{#each getMethods}}
   def {{this.getName}}{{#if this.getParameters}} ({{#each this.getParameters}}{{#if @first}}{{else}},{{/if}}{{#if this.getName}}{{this.getName}}{{else}}param{{@index}}{{/if}}{{/each}}){{/if}}
     return

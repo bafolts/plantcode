@@ -18,10 +18,10 @@ abstract class Car {
       return null;
   }
 }
-class Toyota extends Car {
+class Toyota : Car {
 }
-class Honda extends Car {
+class Honda : Car {
 }
-class Ford extends Car {
+class Ford : Car {
 }
 
