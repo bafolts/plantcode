@@ -1,5 +1,5 @@
 plantumlfile
-  = items:((noise newline { return null }) / (noise "@startuml" noise newline filelines:umllines noise "@enduml" { var UMLBlock = require("./UMLBlock"); return new UMLBlock(filelines) }))* { for (var i = 0; i < items.length; i++) { if (items[i] === null) { items.splice(i, 1); i--; } } return items }
+  = items:((noise newline { return null }) / (noise "@startuml" noise newline filelines:umllines noise "@enduml" noise { var UMLBlock = require("./UMLBlock"); return new UMLBlock(filelines) }))* { for (var i = 0; i < items.length; i++) { if (items[i] === null) { items.splice(i, 1); i--; } } return items }
 umllines
   = lines:(umlline*) { for (var i = 0; i < lines.length; i++) { if (lines[i]===null) { lines.splice(i, 1); i--; } } return lines; }
 umlline
@@ -7,6 +7,7 @@ umlline
   / titleset newline { return null }
   / noise newline { return null }
   / hideline newline { return null }
+  / skinparams newline { return null }
   / declaration:packagedeclaration newline { return declaration }
   / declaration:namespacedeclaration newline { return declaration }
   / declaration:classdeclaration newline { return declaration }
@@ -14,7 +15,9 @@ umlline
   / declaration:memberdeclaration newline { return declaration }
   / declaration:connectordeclaration newline { return declaration }
 hideline
-  = "hide empty members"
+  = noise "hide empty members" noise
+skinparams
+  = noise "skinparam" noise [^\r\n]+
 connectordeclaration
   = noise leftObject:objectname noise connectordescription? noise connector:connectortype noise connectordescription? noise rightObject:objectname noise ([:] [^\r\n]+)? { var Connection = require("./Connection"); return new Connection(leftObject, connector, rightObject) }
 connectordescription

@@ -109,7 +109,9 @@ function exitSuccess() {
 }
 
 function abort(message) {
-  util.error(message);
+  for (var i = 0, length = arguments.length; i < length; i++) {
+    util.error(arguments[i]);
+  }
   exitFailure();
 }
 
