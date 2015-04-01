@@ -1,0 +1,23 @@
+class {{getFullName}}{{#if getExtends}} extends {{#with getExtends}}{{getFullName}}{{/with}}{{/if}} {
+{{#if getExtends}}
+ {{#if hasFields}}
+  constructor: function () {
+    super().apply(this, arguments);
+   {{#each getFields}}
+    this.{{getName}} = undefined;
+   {{/each}}
+  }{{#if hasMethods}},{{/if}}
+ {{/if}}
+{{else}}
+ {{#if hasFields}}
+  constructor: function () {
+   {{#each getFields}}
+    this.{{getName}} = undefined;
+   {{/each}}
+  }{{#if hasMethods}},{{/if}}
+ {{/if}}
+{{/if}}
+{{#each getMethods}}
+  {{getName}}: function ({{#if getParameters}}{{#each getParameters}}{{#if @first}}{{else}},{{/if}}{{#if getName}}{{getName}}{{else}}param{{@index}}{{/if}}{{/each}}{{/if}}) {}{{#if @last}}{{else}},{{/if}}
+{{/each}}
+}
