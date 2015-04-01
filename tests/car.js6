@@ -1,0 +1,24 @@
+class Car {
+  constructor: function () {
+    this.model = undefined;
+    this.make = undefined;
+    this.year = undefined;
+  },
+  setModel: function (model) {},
+  setMake: function (make) {},
+  setYear: function (param0) {},
+  getModel: function () {},
+  getMake: function () {},
+  getYear: function () {}
+}
+
+class Toyota extends Car {
+}
+
+class Honda extends Car {
+}
+
+class Ford extends Car {
+}
+
+

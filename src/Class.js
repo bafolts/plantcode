@@ -35,6 +35,15 @@ module.exports = (function () {
     return this.className;
   }
  
+  Class.prototype.hasMethods = function () {
+    for (var i = 0, length = this.fileLines.length; i < length; i++) {
+      if (this.fileLines[i] instanceof Method) {
+        return true;
+      }
+    }
+    return false;
+  }
+ 
   Class.prototype.getMethods = function () {
     var aResult = [];
     for (var i = 0, length = this.fileLines.length; i < length; i++) {
@@ -43,6 +52,15 @@ module.exports = (function () {
       }
     }
     return aResult;
+  }
+ 
+  Class.prototype.hasFields = function () {
+    for (var i = 0, length = this.fileLines.length; i < length; i++) {
+      if (!(this.fileLines[i] instanceof Method) && this.fileLines[i] instanceof Field) {
+        return true;
+      }
+    }
+    return false;
   }
  
   Class.prototype.getFields = function () {

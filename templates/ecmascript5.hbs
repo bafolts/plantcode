@@ -1,0 +1,15 @@
+{{#if getExtends}}
+  function {{getFullName}}() {
+    {{#with getExtends}}{{getFullName}}{{/with}}.prototype.constructor.apply(this, arguments);
+  }
+  {{getFullName}}.prototype = Object.create({{#with getExtends}}{{getFullName}}{{/with}}.prototype);
+  {{getFullName}}.prototype.constructor = {{getFullName}};
+{{else}}
+  function {{getFullName}}() {}
+{{/if}}
+{{#each getFields}}
+  {{#call ../this ../getFullName}}{{/call}}.prototype.{{getName}} = undefined;
+{{/each}}
+{{#each getMethods}}
+  {{#call ../this ../getFullName}}{{/call}}.prototype.{{getName}} = function ({{#if getParameters}}{{#each getParameters}}{{#if @first}}{{else}},{{/if}}{{#if getName}}{{getName}}{{else}}param{{@index}}{{/if}}{{/each}}{{/if}}) {};
+{{/each}}

@@ -10,7 +10,7 @@ var options = {
   output: null
 };
 
-var supported_languages = ["coffeescript", "csharp", "java", "php", "ruby", "typescript"];
+var supported_languages = ["coffeescript", "csharp", "ecmascript5", "ecmascript6", "java", "php", "ruby", "typescript"];
 
 var args = process.argv.slice(2); // Trim "node" and the script path.
 
@@ -161,3 +161,23 @@ function processTemplateFile(templateData, dictionary) {
   }
 
 }
+
+// Workaround for an apparent bug in Handlebars: functions are not called with the parent scope
+// as context.
+//
+// Here the getFullName is found in the parent scope (Class), but it is called with the current
+// scope (Field) as context:
+//
+// {{#each getFields}}
+//   {{../getFullName}}
+// {{/each}}
+//
+// The following helper works around it:
+//
+// {{#each getFields}}
+//   {{#call ../this ../getFullName}}
+// {{/each}}
+
+hbs.registerHelper('call', function (context, member, options) {
+   return member.call(context);
+});

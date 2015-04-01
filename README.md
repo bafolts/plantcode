@@ -24,6 +24,8 @@ Options:
 The currently supported languages are
 * CoffeeScript (coffeescript) [default]
 * C# (csharp)
+* ECMAScript5 (javascript)
+* ECMAScript6 (javascript2.0)
 * Java (java)
 * PHP (php)
 * Ruby (ruby)
