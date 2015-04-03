@@ -3,9 +3,11 @@
     <head>
         <title>Client-side code generation</title>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.17/require.min.js"></script>
+        <script type="text/javascript" src="js/plantcode-web.js"></script>
         <script>
-        require(['js/plantcode'], function (plantcode) {
-            console.log(plantcode);
+        require(['plantcode-web'], function (plantcode) {
+            console.log(plantcode.getSupportedLanguages());
+            console.log(plantcode.process());
         });
         </script>
     </head>

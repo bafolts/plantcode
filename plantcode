@@ -4,13 +4,14 @@ var util = require("util");
 var fs = require("fs");
 var hbs = require("handlebars");
 var parser = require("./src/plantuml");
+var settings = require("./src/settings");
 
 var options = {
   language: "coffeescript",
   output: null
 };
 
-var supported_languages = ["coffeescript", "csharp", "ecmascript5", "ecmascript6", "java", "php", "ruby", "typescript"];
+var supported_languages = settings.languages;
 
 var args = process.argv.slice(2); // Trim "node" and the script path.
 
