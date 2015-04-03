@@ -1,5 +1,10 @@
 
-module.exports = (function () {
+if (typeof define !== 'function') {
+    var define = require('amdefine')(module);
+}
+
+define(function (require) {
+return (function () {
 
   var Class = require("./Class");
   var AbstractClass = require("./AbstractClass");
@@ -53,3 +58,5 @@ module.exports = (function () {
   return Namespace;
 
 })()
+
+});

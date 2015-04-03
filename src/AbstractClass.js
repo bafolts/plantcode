@@ -4,21 +4,21 @@ if (typeof define !== 'function') {
 }
 
 define(function(require) {
-return (function () {
+    return (function () {
 
-  var Class = require("./Class");
-  var util = require("util");
+    var Class = require("./Class");
+    var util = require("util");
 
-  var AbstractClass = function (className, fileLines) {
-    AbstractClass.super_.call(this, className, fileLines);
-  }
-  util.inherits(AbstractClass, Class);
+    var AbstractClass = function (className, fileLines) {
+        AbstractClass.super_.call(this, className, fileLines);
+    }
+    util.inherits(AbstractClass, Class);
 
-  AbstractClass.prototype.isAbstract = function () {
-    return true;
-  }
+    AbstractClass.prototype.isAbstract = function () {
+        return true;
+    }
 
-  return AbstractClass;
+    return AbstractClass;
 
-})()
+    })()
 })

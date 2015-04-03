@@ -6,11 +6,11 @@ if (typeof define !== 'function') {
 define(function (require) {
     return (function () {
 
-        var Composition = function () {
+        var Aggregation = function () {
 
         }
 
-        return Composition;
+        return Aggregation;
 
         })()
 });

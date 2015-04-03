@@ -1,5 +1,10 @@
 
-module.exports = (function () {
+if (typeof define !== 'function') {
+    var define = require('amdefine')(module);
+}
+
+define(function (require) {
+return (function () {
 
 
   var Package = function (namespaceName, fileLines) {
@@ -10,3 +15,5 @@ module.exports = (function () {
   return Package;
 
 })()
+
+});

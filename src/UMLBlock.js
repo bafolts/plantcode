@@ -1,5 +1,11 @@
 
-module.exports = (function () {
+if (typeof define !== 'function') {
+    var define = require('amdefine')(module);
+}
+
+define(function (require) {
+
+return (function () {
 
   var Namespace = require("./Namespace");
   var Class = require("./Class");
@@ -107,3 +113,5 @@ module.exports = (function () {
   return UMLBlock;
 
 })()
+
+});

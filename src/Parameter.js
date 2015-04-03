@@ -1,5 +1,10 @@
 
-module.exports = (function () {
+if (typeof define !== 'function') {
+    var define = require('amdefine')(module);
+}
+
+define(function (require) {
+return (function () {
 
   var Parameter = function (returnType, memberName) {
     this.sReturnType = returnType;
@@ -17,3 +22,5 @@ module.exports = (function () {
   return Parameter;
 
 })()
+
+});

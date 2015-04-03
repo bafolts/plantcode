@@ -1,5 +1,11 @@
 
-module.exports = (function () {
+if (typeof define !== 'function') {
+    var define = require('amdefine')(module);
+}
+
+define(function (require) {
+
+return (function () {
 
   var Extension = function (bIsLeft) {
     this.bIsLeft = bIsLeft;
@@ -12,3 +18,6 @@ module.exports = (function () {
   return Extension;
 
 })()
+
+});
+

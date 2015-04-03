@@ -1,24 +1,31 @@
 
-module.exports = (function () {
+if (typeof define !== 'function') {
+    var define = require('amdefine')(module);
+}
 
-  var Field = function (accessType, returnType, fieldName) {
-    this.sAccessType = accessType;
-    this.sReturnType = returnType;
-    this.sFieldName = fieldName;
-  }
+define(function (require) {
+    return (function () {
 
-  Field.prototype.getAccessType = function () {
-    return this.sAccessType;
-  }
+        var Field = function (accessType, returnType, fieldName) {
+            this.sAccessType = accessType;
+            this.sReturnType = returnType;
+            this.sFieldName = fieldName;
+        }
 
-  Field.prototype.getReturnType = function () {
-    return this.sReturnType;
-  }
-  
-  Field.prototype.getName = function () {
-    return this.sFieldName;
-  }
+        Field.prototype.getAccessType = function () {
+            return this.sAccessType;
+        }
 
-  return Field;
+        Field.prototype.getReturnType = function () {
+            return this.sReturnType;
+        }
+        
+        Field.prototype.getName = function () {
+            return this.sFieldName;
+        }
 
-})()
+        return Field;
+
+        })()
+
+});

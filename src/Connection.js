@@ -1,5 +1,11 @@
 
-module.exports = (function () {
+if (typeof define !== 'function') {
+    var define = require('amdefine')(module);
+}
+
+define(function (require) {
+
+return (function () {
 
   var Connection = function (leftObject, connector, rightObject) {
     this.leftObject = leftObject;
@@ -23,3 +29,5 @@ module.exports = (function () {
   return Connection;
 
 })()
+
+});
