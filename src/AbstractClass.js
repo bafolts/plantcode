@@ -1,8 +1,13 @@
 
-module.exports = (function () {
+if (typeof define !== 'function') {
+    var define = require('amdefine')(module);
+}
 
-  var util = require("util");
+define(function(require) {
+return (function () {
+
   var Class = require("./Class");
+  var util = require("util");
 
   var AbstractClass = function (className, fileLines) {
     AbstractClass.super_.call(this, className, fileLines);
@@ -16,3 +21,4 @@ module.exports = (function () {
   return AbstractClass;
 
 })()
+})

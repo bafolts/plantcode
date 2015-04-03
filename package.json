@@ -13,7 +13,9 @@
     "url": "git://github.com/bafolts/plantuml-code-generator.git"
   },
   "dependencies": {
-    "handlebars": "*"
+    "amdefine": "*",
+    "handlebars": "*",
+    "requirejs": "*"
   },
   "engines": {
     "node": ">= 0.8"
