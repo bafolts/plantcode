@@ -210,3 +210,12 @@ plantcode -l coffescript tests/car.pegjs > tests/car.coffee
 ```
 npm test
 ```
+
+###Updating PEGJS grammar:
+
+If you update the PEGJS grammar file `src/plantuml.pegjs` you must run this command to update the corresponding
+`src/plantuml.js` file.
+
+```
+npm run-script peg-update
+```
