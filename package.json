@@ -1,11 +1,12 @@
 {
   "name": "plantcode",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "PlantUML to class file generator.",
   "author": "Brian Folts <brian.folts@gmail.com>",
   "main": "plantcode",
   "scripts": {
-    "test": "node plantcode -l csharp tests/car.pegjs > tests/car.cs && node plantcode -l java tests/car.pegjs > tests/car.java && node plantcode -l coffeescript tests/car.pegjs > tests/car.coffee && node plantcode -l typescript tests/car.pegjs > tests/car.ts && node plantcode -l ruby tests/car.pegjs > tests/car.rb && node plantcode -l php tests/car.pegjs > tests/car.php && node plantcode -l ecmascript5 tests/car.pegjs > tests/car.js && node plantcode -l ecmascript6 tests/car.pegjs > tests/car.js6"
+    "test": "node plantcode -l csharp tests/car.pegjs > tests/car.cs && node plantcode -l java tests/car.pegjs > tests/car.java && node plantcode -l coffeescript tests/car.pegjs > tests/car.coffee && node plantcode -l typescript tests/car.pegjs > tests/car.ts && node plantcode -l ruby tests/car.pegjs > tests/car.rb && node plantcode -l php tests/car.pegjs > tests/car.php && node plantcode -l ecmascript5 tests/car.pegjs > tests/car.js && node plantcode -l ecmascript6 tests/car.pegjs > tests/car.js6",
+    "peg-update": "node node_modules/pegjs/bin/pegjs src/plantuml.pegjs src/plantuml.js"
   },
   "bin": "plantcode",
   "repository": {
@@ -13,7 +14,10 @@
     "url": "git://github.com/bafolts/plantuml-code-generator.git"
   },
   "dependencies": {
-    "handlebars": "*"
+    "handlebars": "^4.0.5"
+  },
+  "devDependencies": {
+    "pegjs": "^0.9.0"
   },
   "engines": {
     "node": ">= 0.8"

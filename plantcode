@@ -4,6 +4,7 @@ var util = require("util");
 var fs = require("fs");
 var hbs = require("handlebars");
 var parser = require("./src/plantuml");
+var os = require("os");
 
 var options = {
   language: "coffeescript",
@@ -146,7 +147,7 @@ function processTemplateFile(templateData, dictionary) {
 
   dictionary.forEach(function (element) {
     element.getClasses().forEach(function (element) {
-      output += template(element) + "\r\n";
+      output += template(element) + os.EOL + os.EOL;
     })
   })
 

@@ -18,10 +18,31 @@ abstract class Car {
       return null;
   }
 }
+
+class NamesInThings {
+  private String field;
+  private String1 field1;
+  private String _some_private;
+  private String_2 field_2;
+  public void member() {
+  }
+  public String1 member2() {
+      return null;
+  }
+  public void member3() {
+  }
+  public String2 member_s() {
+      return null;
+  }
+}
+
 class Toyota : Car {
 }
+
 class Honda : Car {
 }
+
 class Ford : Car {
 }
+
 

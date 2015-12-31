@@ -20,16 +20,39 @@ abstract class Car {
   }
 }
 ?>
+
+<?php
+class NamesInThings {
+  private field;
+  private field1;
+  private _some_private;
+  private field_2;
+  public function member() {
+  }
+  public function member2() {
+      return null;
+  }
+  public function member3() {
+  }
+  public function member_s() {
+      return null;
+  }
+}
+?>
+
 <?php
 class Toyota extends Car {
 }
 ?>
+
 <?php
 class Honda extends Car {
 }
 ?>
+
 <?php
 class Ford extends Car {
 }
 ?>
+
 

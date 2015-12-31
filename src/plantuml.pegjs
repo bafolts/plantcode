@@ -86,9 +86,9 @@ methodparameter
 returntype
   = items:[^ ,\n\r\t(){}]+ { return items.join("") }
 objectname
-  = objectname:([A-Za-z][A-Za-z0-9.]*) { return [objectname[0], objectname[1].join("")].join("") }
+  = objectname:([A-Za-z_][A-Za-z0-9.]*) { return [objectname[0], objectname[1].join("")].join("") }
 membername
-  = items:[A-Za-z]+ { return items.join("") }
+  = items:([A-Za-z_][A-Za-z0-9_]*) { return [items[0], items[1].join("")].join("") }
 accessortype
   = publicaccessor
   / privateaccessor
