@@ -3,6 +3,8 @@
 
 hide empty members
 
+' This is a comment line
+
 abstract Car {
   + void setModel(String model)
   + void setMake(String make)

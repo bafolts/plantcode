@@ -6,6 +6,7 @@ umlline
   = propertyset newline { return null }
   / titleset newline { return null }
   / noise newline { return null }
+  / commentline { return null }
   / hideline newline { return null }
   / skinparams newline { return null }
   / declaration:packagedeclaration newline { return declaration }
@@ -24,6 +25,8 @@ connectordescription
   = noise ["]([\\]["]/[^"])*["] noise
 titleset
   = noise "title " noise [^\r\n]+ noise
+commentline
+  = noise "'" [^\r\n]+ noise
 connectortype
   = item:extends { return item }
   / concatenates { var Composition = require("./Composition"); return new Composition() }
