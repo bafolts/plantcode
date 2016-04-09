@@ -17,7 +17,7 @@ var args = process.argv.slice(2); // Trim "node" and the script path.
 if (args.length === 0) {
   printUsage();
 } else {
-  processArguments();
+  convertFile(getArguments());
 }
 
 function printLanguages() {
@@ -48,7 +48,7 @@ function isValidLanguage(language) {
   return supported_languages.indexOf(language) !== -1;
 }
 
-function processArguments() {
+function getArguments() {
 
   while (args.length > 0 && isOption(args[0])) {
     switch (args[0]) {
@@ -86,17 +86,25 @@ function processArguments() {
 
   switch (args.length) {
     case 1:
-      fs.readFile(args[0], { encoding: "UTF-8" }, function (err, data) {
-        if (err === null) {
-          processInputFile(data);
-        } else {
-          console.log("Unable to read input file.");
-        }
-      });
+      options.input = args[0];
     break;
     default:
       abort("No input file provided.");
   }
+
+  return options;
+
+}
+
+function convertFile(config) {
+
+  fs.readFile(config.input, { encoding: "UTF-8" }, function (err, data) {
+    if (err === null) {
+      processInputFile(config, data);
+    } else {
+      console.error("Unable to read input file.");
+    }
+  });
 
 }
 
@@ -123,22 +131,22 @@ function nextArg() {
   args.shift();
 }
 
-function processInputFile(data) {
+function processInputFile(config, data) {
   try {
     var aUMLBlocks = parser.parse(data);
   } catch(e) {
     abort("Error parsing input file: ", e);
   }
-  fs.readFile("templates/" + options.language + ".hbs", { encoding: "UTF-8" }, function (err, data) {
+  fs.readFile("templates/" + config.language + ".hbs", { encoding: "UTF-8" }, function (err, data) {
     if (err === null) {
-      processTemplateFile(data, aUMLBlocks);
+      processTemplateFile(config, data, aUMLBlocks);
     } else {
-      abort("Unable to read template file for " + options.language + ".");
+      abort("Unable to read template file for " + config.language + ".");
     }
   });
 }
 
-function processTemplateFile(templateData, dictionary) {
+function processTemplateFile(config, templateData, dictionary) {
 
   var template = hbs.compile(templateData);
 
@@ -150,12 +158,12 @@ function processTemplateFile(templateData, dictionary) {
     })
   })
 
-  if (options.output === null) {
+  if (config.output === null) {
     console.log(output);
   } else {
-    fs.writeFile(options.output, output, function (err) {
+    fs.writeFile(config.output, output, function (err) {
       if (err !== null) {
-        abort("Unable to write output file for " + options.output + ".");
+        abort("Unable to write output file for " + config.output + ".");
       }
     })
   }
@@ -181,3 +189,5 @@ function processTemplateFile(templateData, dictionary) {
 hbs.registerHelper('call', function (context, member, options) {
    return member.call(context);
 });
+
+exports.convertFile = convertFile;

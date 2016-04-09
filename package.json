@@ -5,7 +5,7 @@
   "author": "Brian Folts <brian.folts@gmail.com>",
   "main": "plantcode",
   "scripts": {
-    "test": "node plantcode -l java tests/comment-file-simple.pegjs > tests/comment-file-simple.java && node plantcode -l csharp tests/car.pegjs > tests/car.cs && node plantcode -l java tests/car.pegjs > tests/car.java && node plantcode -l coffeescript tests/car.pegjs > tests/car.coffee && node plantcode -l typescript tests/car.pegjs > tests/car.ts && node plantcode -l ruby tests/car.pegjs > tests/car.rb && node plantcode -l php tests/car.pegjs > tests/car.php && node plantcode -l ecmascript5 tests/car.pegjs > tests/car.js && node plantcode -l ecmascript6 tests/car.pegjs > tests/car.js6",
+    "test": "node node_modules/.bin/istanbul cover tests/integration.js",
     "install": "node node_modules/pegjs/bin/pegjs src/plantuml.pegjs src/plantuml.js"
   },
   "bin": "plantcode",
@@ -17,6 +17,7 @@
     "handlebars": "^4.0.5"
   },
   "devDependencies": {
+    "istanbul": "^0.4.3",
     "pegjs": "^0.9.0"
   },
   "engines": {
