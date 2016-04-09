@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-var util = require("util");
 var fs = require("fs");
 var hbs = require("handlebars");
 var parser = require("./src/plantuml");
@@ -23,25 +22,25 @@ if (args.length === 0) {
 
 function printLanguages() {
   supported_languages.forEach(function (item) {
-    util.puts(item);
+    console.log(item);
   })
   exitSuccess();
 }
 
 function printUsage() {
-  util.puts("Usage: plantcode [options] <inputFile>");
-  util.puts("");
-  util.puts("Generates classfile(s) for the provided PlantUML file specified by <input_file> and writes to standard output.");
-  util.puts("");
-  util.puts("Options:");
-  util.puts("  -l, --language <language>          name of the programming language");
-  util.puts("                                     which the produced class files")
-  util.puts("                                     will be written in");
-  util.puts("  -o, --out <output_path>            the path to output the file(s) to");
-  util.puts("      --show-languages               displays all the current supported");
-  util.puts("                                     programming languages for use")
-  util.puts("                                     for with the language option");
-  util.puts("  -h, --help                         print help and exit");
+  console.log("Usage: plantcode [options] <inputFile>");
+  console.log("");
+  console.log("Generates classfile(s) for the provided PlantUML file specified by <input_file> and writes to standard output.");
+  console.log("");
+  console.log("Options:");
+  console.log("  -l, --language <language>          name of the programming language");
+  console.log("                                     which the produced class files")
+  console.log("                                     will be written in");
+  console.log("  -o, --out <output_path>            the path to output the file(s) to");
+  console.log("      --show-languages               displays all the current supported");
+  console.log("                                     programming languages for use")
+  console.log("                                     for with the language option");
+  console.log("  -h, --help                         print help and exit");
   exitSuccess();
 }
 
@@ -91,7 +90,7 @@ function processArguments() {
         if (err === null) {
           processInputFile(data);
         } else {
-          util.puts("Unable to read input file.");
+          console.log("Unable to read input file.");
         }
       });
     break;
@@ -111,7 +110,7 @@ function exitSuccess() {
 
 function abort(message) {
   for (var i = 0, length = arguments.length; i < length; i++) {
-    util.error(arguments[i]);
+    console.error(arguments[i]);
   }
   exitFailure();
 }
@@ -152,7 +151,7 @@ function processTemplateFile(templateData, dictionary) {
   })
 
   if (options.output === null) {
-    util.puts(output);
+    console.log(output);
   } else {
     fs.writeFile(options.output, output, function (err) {
       if (err !== null) {
