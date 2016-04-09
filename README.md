@@ -39,14 +39,16 @@ a parser which is then used in the creation of all output files. This grammar sh
 
 ```
 plantumlfile
-  = items:((noise newline { return null }) / (noise "@startuml" noise newline filelines:umllines noise "@enduml" { var UMLBlock = require("./UMLBlock"); return new UMLBlock(filelines) }))* { for (var i = 0; i < items.length; i++) { if (items[i] === null) { items.splice(i, 1); i--; } } return items }
+  = items:((noise newline { return null }) / (noise "@startuml" noise newline filelines:umllines noise "@enduml" noise { var UMLBlock = require("./UMLBlock"); return new UMLBlock(filelines) }))* { for (var i = 0; i < items.length; i++) { if (items[i] === null) { items.splice(i, 1); i--; } } return items }
 umllines
   = lines:(umlline*) { for (var i = 0; i < lines.length; i++) { if (lines[i]===null) { lines.splice(i, 1); i--; } } return lines; }
 umlline
   = propertyset newline { return null }
   / titleset newline { return null }
   / noise newline { return null }
+  / commentline { return null }
   / hideline newline { return null }
+  / skinparams newline { return null }
   / declaration:packagedeclaration newline { return declaration }
   / declaration:namespacedeclaration newline { return declaration }
   / declaration:classdeclaration newline { return declaration }
@@ -54,13 +56,17 @@ umlline
   / declaration:memberdeclaration newline { return declaration }
   / declaration:connectordeclaration newline { return declaration }
 hideline
-  = "hide empty members"
+  = noise "hide empty members" noise
+skinparams
+  = noise "skinparam" noise [^\r\n]+
 connectordeclaration
   = noise leftObject:objectname noise connectordescription? noise connector:connectortype noise connectordescription? noise rightObject:objectname noise ([:] [^\r\n]+)? { var Connection = require("./Connection"); return new Connection(leftObject, connector, rightObject) }
 connectordescription
   = noise ["]([\\]["]/[^"])*["] noise
 titleset
   = noise "title " noise [^\r\n]+ noise
+commentline
+  = noise "'" [^\r\n]+ noise
 connectortype
   = item:extends { return item }
   / concatenates { var Composition = require("./Composition"); return new Composition() }
@@ -123,9 +129,9 @@ methodparameter
 returntype
   = items:[^ ,\n\r\t(){}]+ { return items.join("") }
 objectname
-  = objectname:([A-Za-z][A-Za-z0-9.]*) { return [objectname[0], objectname[1].join("")].join("") }
+  = objectname:([A-Za-z_][A-Za-z0-9.]*) { return [objectname[0], objectname[1].join("")].join("") }
 membername
-  = items:[A-Za-z]+ { return items.join("") }
+  = items:([A-Za-z_][A-Za-z0-9_]*) { return [items[0], items[1].join("")].join("") }
 accessortype
   = publicaccessor
   / privateaccessor
