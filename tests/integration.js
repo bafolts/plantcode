@@ -6,6 +6,10 @@ var inputs = [{
   input: "tests/comment-file-simple.pegjs",
   output: "tests/comment-file-simple.java"
 }, {
+  language: "java",
+  input: "tests/comments-dots.pegjs",
+  output: "tests/comments-dots.java"
+}, {
   language: "csharp",
   input: "tests/car.pegjs",
   output: "tests/car.cs"

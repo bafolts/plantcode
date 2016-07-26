@@ -27,6 +27,9 @@ titleset
   = noise "title " noise [^\r\n]+ noise
 commentline
   = noise "'" [^\r\n]+ noise
+  / noise ".." [^\r\n\.]+ ".." noise
+  / noise "--" [^\r\n\-]+ "--" noise
+  / noise "__" [^\r\n\_]+ "__" noise
 connectortype
   = item:extends { return item }
   / concatenates { var Composition = require("./Composition"); return new Composition() }
@@ -80,6 +83,8 @@ memberdeclaration
   / declaration:fielddeclaration { return declaration }
 fielddeclaration
   = noise accessortype:accessortype noise returntype:returntype noise membername:membername noise { var Field = require("./Field"); return new Field(accessortype, returntype, membername) }
+  / noise accessortype:accessortype noise membername:membername noise { var Field = require("./Field"); return new Field(accessortype, "void", membername) }
+  / noise returntype:returntype noise membername:membername noise { var Field = require("./Field"); return new Field("+", returntype, membername) }
 methoddeclaration
   = noise field:fielddeclaration [(] parameters:methodparameters [)] noise { var Method = require("./Method"); return new Method(field.getAccessType(), field.getReturnType(), field.getName(), parameters); }
 methodparameters

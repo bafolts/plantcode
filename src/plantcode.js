@@ -25,7 +25,7 @@ function processInputFile(config, data) {
   try {
     var aUMLBlocks = parser.parse(data);
   } catch(e) {
-    console.error("Error parsing input file: ", e);
+    console.error("Error parsing input file: ", config.input, e);
   }
   fs.readFile("templates/" + config.language + ".hbs", { encoding: "UTF-8" }, function (err, data) {
     if (err === null) {
