@@ -1,0 +1,6 @@
+class Object {
+}
+
+class Foo {
+}
+

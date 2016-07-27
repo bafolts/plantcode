@@ -7,6 +7,7 @@ umlline
   / titleset newline { return null }
   / noise newline { return null }
   / commentline { return null }
+  / noteline { return null }
   / hideline newline { return null }
   / skinparams newline { return null }
   / declaration:packagedeclaration newline { return declaration }
@@ -30,6 +31,8 @@ commentline
   / noise ".." [^\r\n\.]+ ".." noise
   / noise "--" [^\r\n\-]+ "--" noise
   / noise "__" [^\r\n\_]+ "__" noise
+noteline
+  = noise "note " noise [^\r\n]+ noise
 connectortype
   = item:extends { return item }
   / concatenates { var Composition = require("./Composition"); return new Composition() }
@@ -40,6 +43,7 @@ extends
   / connectorsize "|>" { var Extension = require("./Extension"); return new Extension(false) }
 connectorsize
   = ".."
+  / "---"
   / "--"
   / [.]
   / [-]
@@ -69,6 +73,7 @@ newline
   / [\n]
 classdeclaration
   = noise "class " noise classname:objectname noise startblock lines:umllines endblock { var Class = require("./Class"); return new Class(classname, lines) }
+  / noise "class " noise classname:objectname noise "<<" noise [^>]+ noise ">>" noise { var Class = require("./Class"); return new Class(classname) }
   / noise "class " noise classname:objectname noise { var Class = require("./Class"); return new Class(classname) }
   / noise "class " noise classname:objectname noise newline noise lines:umllines "end class" { var Class = require("./Class"); return new Class(classname, lines) }
 color

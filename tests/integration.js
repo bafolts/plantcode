@@ -3,6 +3,10 @@ var exec = require('child_process').exec;
 
 var inputs = [{
   language: "java",
+  input: "tests/notes-file.pegjs",
+  output: "tests/notes-file.java"
+}, {
+  language: "java",
   input: "tests/comment-file-simple.pegjs",
   output: "tests/comment-file-simple.java"
 }, {
