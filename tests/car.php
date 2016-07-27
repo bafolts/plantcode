@@ -55,3 +55,8 @@ class Ford extends Car {
 }
 ?>
 
+<?php
+class Hyundai extends Car {
+}
+?>
+

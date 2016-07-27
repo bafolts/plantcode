@@ -55,3 +55,7 @@ class Ford < Car
 end
 
 
+class Hyundai < Car
+end
+
+

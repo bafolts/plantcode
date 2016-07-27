@@ -45,3 +45,6 @@ class Honda : Car {
 class Ford : Car {
 }
 
+class Hyundai : Car {
+}
+

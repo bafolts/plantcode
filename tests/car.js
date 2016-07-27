@@ -42,3 +42,10 @@
   Ford.prototype.constructor = Ford;
 
 
+  function Hyundai() {
+    Car.prototype.constructor.apply(this, arguments);
+  }
+  Hyundai.prototype = Object.create(Car.prototype);
+  Hyundai.prototype.constructor = Hyundai;
+
+

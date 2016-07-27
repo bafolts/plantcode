@@ -43,6 +43,10 @@ extends
   / connectorsize "|>" { var Extension = require("./Extension"); return new Extension(false) }
 connectorsize
   = ".."
+  / "-up-"
+  / "-down-"
+  / "-left-"
+  / "-right-"
   / "---"
   / "--"
   / [.]

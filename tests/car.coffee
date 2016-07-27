@@ -30,3 +30,6 @@ class Honda extends Car
 class Ford extends Car
 
 
+class Hyundai extends Car
+
+

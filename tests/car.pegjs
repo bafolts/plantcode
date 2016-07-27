@@ -31,9 +31,11 @@ class NamesInThings {
 class Toyota
 class Honda
 class Ford
+class Hyundai
   
-Toyota --|> Car
-Honda --|> Car
-Ford --|> Car
+Toyota -left-|> Car
+Honda -right-|> Car
+Ford -up-|> Car
+Hyundai -down-|> Car
 
 @enduml
