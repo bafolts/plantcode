@@ -1,8 +1,8 @@
-#plantuml-code-generator
+# plantuml-code-generator
 
 Provides a command line utility to generate code in various languages given a plantuml class diagram.
 
-##Command line options
+## Command line options
 
 ```shell
 Usage: plantcode [options] <inputFile>
@@ -31,7 +31,7 @@ The currently supported languages are
 * Ruby (ruby)
 * TypeScript (typescript)
 
-##PEG.js
+## PEG.js
 The most recent version of [PlantUML](http://plantuml.sourceforge.net/) does not have a defined grammar to use with
 parsing the PlantUML code. Below is a guess as to what the grammer for
 the language should be, relative to the [PEG.js](https://github.com/dmajda/pegjs) parser. This creates
@@ -144,17 +144,17 @@ protectedaccessor
   = [#]
 ```
 
-##Goals
+## Goals
 Initially this project will only run with node.js and output coffeescript classes.
 The general idea is that, given any PlantUML file, we will be able
 to generate class files in any output language. Eventually moving on from node.js and supporting
 other tools to use for conversion.
 
-##Example
+## Example
 
 The current example is very basic and features a common example of a car.
 
-###PlantUML Code:
+### PlantUML Code:
 
 ```
 @startuml
@@ -181,7 +181,7 @@ Ford --|> Car
 @enduml
 ```
 
-###CoffeeScript Produced:
+### CoffeeScript Produced:
 
 ```coffeescript
 class Car
@@ -205,19 +205,19 @@ class Honda extends Car
 class Ford extends Car
 ```
 
-###Running:
+### Running:
 
 ```
 npm install
 plantcode -l coffescript tests/car.pegjs > tests/car.coffee
 ```
 
-###Testing:
+### Testing:
 ```
 npm test
 ```
 
-###Updating PEGJS grammar:
+### Updating PEGJS grammar:
 
 If you update the PEGJS grammar file `src/plantuml.pegjs` you must run this command to update the corresponding
 `src/plantuml.js` file.
