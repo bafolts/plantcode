@@ -75,6 +75,13 @@ function processTemplateFile(config, templateData, dictionary) {
 // {{#each getFields}}
 //   {{#call ../this ../getFullName}}
 // {{/each}}
+hbs.registerHelper('if_ne', function(a, b, opts) {
+    if (a() != b) {
+        return opts.fn(this);
+    } else {
+        return opts.inverse(this);
+    }
+});
 
 hbs.registerHelper('call', function (context, member, options) {
    return member.call(context);

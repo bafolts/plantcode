@@ -4,42 +4,38 @@ module.exports = (function () {
   var Field = require("./Field");
   var Method = require("./Method");
 
-  var Class = function (className, fileLines) {
+  var Interface = function (interfaceName, fileLines) {
     this.cExtends = null;
     this.fileLines = fileLines || [];
-    this.className = className;
+    this.interfaceName = interfaceName;
     this.nNamespace = null;
   }
 
-  Class.prototype.getKeyword = function () {
-    return "class";
-  }
-
-  Class.prototype.setExtends = function (className) {
-    this.cExtends = className;
+  Interface.prototype.getKeyword = function () {
+    return "interface";
   }
   
-  Class.prototype.getExtends = function () {
+  Interface.prototype.setExtends = function (interfaceName) {
+    this.cExtends = interfaceName;
+  }
+  
+  Interface.prototype.getExtends = function () {
     return this.cExtends;
   }
 
-  Class.prototype.setNamespace = function (namespace) {
+  Interface.prototype.setNamespace = function (namespace) {
     this.nNamespace = namespace;
   }
   
-  Class.prototype.getNamespace = function () {
+  Interface.prototype.getNamespace = function () {
     return this.nNamespace;
   }
 
-  Class.prototype.isAbstract = function () {
-    return false;
-  }
-
-  Class.prototype.getName = function () {
-    return this.className;
+  Interface.prototype.getName = function () {
+    return this.interfaceName;
   }
  
-  Class.prototype.hasMethods = function () {
+  Interface.prototype.hasMethods = function () {
     for (var i = 0, length = this.fileLines.length; i < length; i++) {
       if (this.fileLines[i] instanceof Method) {
         return true;
@@ -48,7 +44,7 @@ module.exports = (function () {
     return false;
   }
  
-  Class.prototype.getMethods = function () {
+  Interface.prototype.getMethods = function () {
     var aResult = [];
     for (var i = 0, length = this.fileLines.length; i < length; i++) {
       if (this.fileLines[i] instanceof Method) {
@@ -58,7 +54,7 @@ module.exports = (function () {
     return aResult;
   }
  
-  Class.prototype.hasFields = function () {
+  Interface.prototype.hasFields = function () {
     for (var i = 0, length = this.fileLines.length; i < length; i++) {
       if (!(this.fileLines[i] instanceof Method) && this.fileLines[i] instanceof Field) {
         return true;
@@ -67,7 +63,7 @@ module.exports = (function () {
     return false;
   }
  
-  Class.prototype.getFields = function () {
+  Interface.prototype.getFields = function () {
     var aResult = [];
     for (var i = 0, length = this.fileLines.length; i < length; i++) {
       if (!(this.fileLines[i] instanceof Method) && this.fileLines[i] instanceof Field) {
@@ -77,7 +73,7 @@ module.exports = (function () {
     return aResult;
   }
 
-  Class.prototype.getFullName = function () {
+  Interface.prototype.getFullName = function () {
     if (this.getNamespace() !== null) {
       return this.getNamespace().getFullName() + "." + this.getName();
     } else {
@@ -85,6 +81,6 @@ module.exports = (function () {
     }
   }
 
-  return Class;
+  return Interface;
 
 })()

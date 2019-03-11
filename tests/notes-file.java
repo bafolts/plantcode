@@ -1,6 +1,8 @@
 class Object {
 }
 
+
 class Foo {
 }
+
 

@@ -7,6 +7,7 @@ module.exports = (function () {
   var Connection = require("./Connection");
   var Package = require("./Package");
   var Extension = require("./Extension");
+  var Interface = require("./Interface");
   var util = require("util");
 
   var UMLBlock = function (fileLines) {
@@ -90,7 +91,7 @@ module.exports = (function () {
       if (items[i] instanceof Namespace) {
         this.aNamespaces.push(items[i]);
         this.populateGlobals(items[i]);
-      } else if (items[i] instanceof Class || items[i] instanceof AbstractClass) {
+      } else if (items[i] instanceof Class || items[i] instanceof AbstractClass || items[i] instanceof Interface) {
         this.aClasses.push(items[i]);
       } else if (items[i] instanceof Package) {
         this.aPackages.push(items[i]);

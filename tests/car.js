@@ -10,6 +10,8 @@
   Car.prototype.getYear = function () {};
 
 
+
+
   function NamesInThings() {}
   NamesInThings.prototype.field = undefined;
   NamesInThings.prototype.field1 = undefined;

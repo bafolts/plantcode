@@ -1,4 +1,4 @@
-class {{getFullName}}{{#if getExtends}} < {{#with getExtends}}{{getFullName}}{{/with}}{{/if}}
+{{#if_ne getKeyword "interface"}}class {{getFullName}}{{#if getExtends}} < {{#with getExtends}}{{getFullName}}{{/with}}{{/if}}
 {{#each getFields}}
   @{{this.getName}}
 {{/each}}
@@ -7,4 +7,4 @@ class {{getFullName}}{{#if getExtends}} < {{#with getExtends}}{{getFullName}}{{/
     return
   end
 {{/each}}
-end
+end{{/if_ne}}

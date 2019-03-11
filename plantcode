@@ -14,6 +14,14 @@ var supported_languages = ["coffeescript", "csharp", "ecmascript5", "ecmascript6
 
 var args = process.argv.slice(2); // Trim "node" and the script path.
 
+hbs.registerHelper('if_ne', function(a, b, opts) {
+    if (a() != b) {
+        return opts.fn(this);
+    } else {
+        return opts.inverse(this);
+    }
+});
+
 if (args.length === 0) {
   printUsage();
 } else {
@@ -185,7 +193,6 @@ function processTemplateFile(config, templateData, dictionary) {
 // {{#each getFields}}
 //   {{#call ../this ../getFullName}}
 // {{/each}}
-
 hbs.registerHelper('call', function (context, member, options) {
    return member.call(context);
 });

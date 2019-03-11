@@ -21,6 +21,14 @@ abstract class Car {
 }
 ?>
 
+
+<?php
+interface Driver {
+  private name;
+}
+?>
+
+
 <?php
 class NamesInThings {
   private field;
@@ -40,23 +48,28 @@ class NamesInThings {
 }
 ?>
 
+
 <?php
 class Toyota extends Car {
 }
 ?>
+
 
 <?php
 class Honda extends Car {
 }
 ?>
 
+
 <?php
 class Ford extends Car {
 }
 ?>
 
+
 <?php
 class Hyundai extends Car {
 }
 ?>
+
 

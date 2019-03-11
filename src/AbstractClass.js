@@ -9,6 +9,10 @@ module.exports = (function () {
   }
   util.inherits(AbstractClass, Class);
 
+  AbstractClass.prototype.getKeyword = function () {
+    return "abstract class";
+  }
+
   AbstractClass.prototype.isAbstract = function () {
     return true;
   }

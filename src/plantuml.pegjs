@@ -13,6 +13,7 @@ umlline
   / declaration:packagedeclaration newline { return declaration }
   / declaration:namespacedeclaration newline { return declaration }
   / declaration:classdeclaration newline { return declaration }
+  / declaration:interfacedeclaration newline { return declaration }
   / declaration:abstractclassdeclaration newline { return declaration }
   / declaration:memberdeclaration newline { return declaration }
   / declaration:connectordeclaration newline { return declaration }
@@ -80,6 +81,11 @@ classdeclaration
   / noise "class " noise classname:objectname noise "<<" noise [^>]+ noise ">>" noise { var Class = require("./Class"); return new Class(classname) }
   / noise "class " noise classname:objectname noise { var Class = require("./Class"); return new Class(classname) }
   / noise "class " noise classname:objectname noise newline noise lines:umllines "end class" { var Class = require("./Class"); return new Class(classname, lines) }
+interfacedeclaration
+  = noise "interface " noise interfacename:objectname noise startblock lines:umllines endblock { var Interface = require("./Interface"); return new Interface(interfacename, lines) }
+  / noise "interface " noise interfacename:objectname noise "<<" noise [^>]+ noise ">>" noise { var Interface = require("./Interface"); return new Interface(interfacename) }
+  / noise "interface " noise interfacename:objectname noise { var Interface = require("./Interface"); return new Interface(interfacename) }
+  / noise "interface " noise interfacename:objectname noise newline noise lines:umllines "end interface" { var  Interface = require("./Interface"); return new Interface(interfacename, lines) }
 color
   = [#][0-9a-fA-F]+
 namespacedeclaration

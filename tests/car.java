@@ -19,6 +19,12 @@ abstract class Car {
   }
 }
 
+
+interface Driver {
+  private String name;
+}
+
+
 class NamesInThings {
   private String field;
   private String1 field1;
@@ -36,15 +42,20 @@ class NamesInThings {
   }
 }
 
+
 class Toyota extends Car {
 }
+
 
 class Honda extends Car {
 }
 
+
 class Ford extends Car {
 }
 
+
 class Hyundai extends Car {
 }
+
 

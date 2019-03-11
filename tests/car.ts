@@ -1,4 +1,4 @@
-class Car {
+abstract class Car {
   private model : String;
   private make : String;
   private year : Number;
@@ -22,6 +22,12 @@ class Car {
   }
 }
 
+
+interface Driver {
+  private name : String;
+}
+
+
 class NamesInThings {
   private field : String;
   private field1 : String1;
@@ -41,15 +47,20 @@ class NamesInThings {
   }
 }
 
+
 class Toyota extends Car {
 }
+
 
 class Honda extends Car {
 }
 
+
 class Ford extends Car {
 }
 
+
 class Hyundai extends Car {
 }
+
 

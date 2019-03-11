@@ -1,3 +1,4 @@
+{{#if_ne getKeyword "interface"}}
 {{#if getExtends}}
   function {{getFullName}}() {
     {{#with getExtends}}{{getFullName}}{{/with}}.prototype.constructor.apply(this, arguments);
@@ -13,3 +14,4 @@
 {{#each getMethods}}
   {{#call ../this ../getFullName}}{{/call}}.prototype.{{getName}} = function ({{#if getParameters}}{{#each getParameters}}{{#if @first}}{{else}},{{/if}}{{#if getName}}{{getName}}{{else}}param{{@index}}{{/if}}{{/each}}{{/if}}) {};
 {{/each}}
+{{/if_ne}}

@@ -17,6 +17,10 @@ abstract Car {
   - Number year
 }
 
+interface Driver {
+  + String name
+}
+
 class NamesInThings {
   + String field
   + String1 field1

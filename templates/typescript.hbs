@@ -1,4 +1,4 @@
-class {{getFullName}}{{#if getExtends}} extends {{#with getExtends}}{{getFullName}}{{/with}}{{/if}} {
+{{getKeyword}} {{getFullName}}{{#if getExtends}} extends {{#with getExtends}}{{getFullName}}{{/with}}{{/if}} {
 {{#each getFields}}
   private {{this.getName}} : {{this.getReturnType}};
 {{/each}}

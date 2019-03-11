@@ -10,6 +10,10 @@ class Car
   getYear:  ->
 
 
+
+
+
+
 class NamesInThings
   field: undefined
   field1: undefined
@@ -21,15 +25,20 @@ class NamesInThings
   member_s:  ->
 
 
+
 class Toyota extends Car
+
 
 
 class Honda extends Car
 
 
+
 class Ford extends Car
 
 
+
 class Hyundai extends Car
+
 
 
