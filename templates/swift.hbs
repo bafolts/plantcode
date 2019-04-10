@@ -1,0 +1,12 @@
+{{#if_ne getKeyword "interface"}}class {{getFullName}}{{#if getExtends}} : {{#with getExtends}}{{getFullName}}{{/with}}{{/if}}
+{{#each getFields}}
+  private var {{this.getReturnType}} {{this.getName}};
+{{/each}}
+{{#each getMethods}}
+  func  {{this.getName}}{{#if this.getParameters}}({{#each this.getParameters}}{{#if @first}}{{else}},{{/if}}{{this.getReturnType}} {{#if this.getName}}{{this.getName}}{{else}}param{{@index}}{{/if}}{{/each}}){{else}}(){{/if}} -> {{this.getReturnType}} {
+    {{#if this.needsReturnStatement}}
+      return null;
+    {{/if}}
+  }
+{{/each}}
+}
