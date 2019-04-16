@@ -1,6 +1,6 @@
 {{#if_ne getKeyword "interface"}}class {{getFullName}}{{#if getExtends}} : {{#with getExtends}}{{getFullName}}{{/with}}{{/if}} {
 {{#each getFields}}
-  var {{this.getName}}: {{this.getReturnType}} 
+  var {{this.getName}}: {{this.getReturnType}}?  = nil;
 {{/each}}
 {{#each getMethods}}
   func {{this.getName}}{{#if this.getParameters}}({{#each this.getParameters}}{{#if @first}}{{else}},{{/if}}{{#if this.getName}}{{this.getName}}:{{this.getReturnType}}{{else}}param{{@index}}{{/if}}{{/each}}){{else}}(){{/if}} {

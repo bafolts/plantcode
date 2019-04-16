@@ -1,12 +1,12 @@
 class Car {
-  var model: String 
-  var make: String 
-  var year: Number 
+  var model: String?  = nil;
+  var make: String?  = nil;
+  var year: Int?  = nil;
   func setModel(model:String) {
   }
   func setMake(make:String) {
   }
-  func setYear(param0) {
+  func setYear() {
   }
   func getModel() {
   }
@@ -23,10 +23,10 @@ class Car {
 
 
 class NamesInThings {
-  var field: String 
-  var field1: String1 
-  var _some_private: String 
-  var field_2: String_2 
+  var field: String?  = nil;
+  var field1: String?  = nil;
+  var _some_private: String?  = nil;
+  var field_2: String?  = nil;
   func member() {
   }
   func member2() {
