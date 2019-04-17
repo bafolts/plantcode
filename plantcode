@@ -22,6 +22,15 @@ hbs.registerHelper('if_ne', function(a, b, opts) {
     }
 });
 
+// sReturnType Check
+hbs.registerHelper('if_ne2', function(a, b, opts) {
+  if (a["sReturnType"] != b) {
+      return opts.fn(this);
+  } else {
+      return opts.inverse(this);
+  }
+});
+
 if (args.length === 0) {
   printUsage();
 } else {

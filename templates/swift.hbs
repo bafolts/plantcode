@@ -3,7 +3,8 @@
   var {{this.getName}}: {{this.getReturnType}}?  = nil;
 {{/each}}
 {{#each getMethods}}
-  func {{this.getName}}{{#if this.getParameters}}({{#each this.getParameters}}{{#if @first}}{{else}},{{/if}}{{#if this.getName}}{{this.getName}}:{{this.getReturnType}}{{else}}param{{@index}}{{/if}}{{/each}}){{else}}(){{/if}} {
+  func {{this.getName}}{{#if this.getParameters}}({{#each this.getParameters}}{{#if @first}}{{else}},{{/if}}{{#if this.getName}}{{this.getName}}:{{this.getReturnType}}{{else}}param{{@index}}{{/if}}{{/each}}){{else}}(){{/if}}{{#if_ne2 this "void"}} -> {{this.getReturnType}}{{/if_ne2}}{
+    {{#if_ne2 this "void"}} return {{this.getReturnType}}(){{/if_ne2}}
   }
 {{/each}}
 }{{/if_ne}}
