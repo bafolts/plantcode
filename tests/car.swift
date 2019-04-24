@@ -8,7 +8,7 @@ class Car {
   func setMake(make:String){
     
   }
-  func setYear(param0){
+  func setYear(param0: Any){
     
   }
   func getModel() -> String{
@@ -24,7 +24,9 @@ class Car {
 
 
 
-
+class Driver {
+  var name: String?  = nil;
+}
 
 
 
@@ -44,38 +46,6 @@ class NamesInThings {
   }
   func member_s() -> String2{
      return String2()
-  }
-}
-
-
-
-class Roll {
-  var id: Int?  = nil;
-  var typename: String?  = nil;
-  var type: Int?  = nil;
-  func commentDraft(){
-    
-  }
-  func commentPost(){
-    
-  }
-  func commentGet(){
-    
-  }
-  func commentDelete(){
-    
-  }
-  func questDraft(){
-    
-  }
-  func questPost(){
-    
-  }
-  func questGet(){
-    
-  }
-  func questDelete(){
-    
   }
 }
 
