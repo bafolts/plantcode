@@ -10,7 +10,7 @@ var options = {
   output: null
 };
 
-var supported_languages = ["coffeescript", "csharp", "ecmascript5", "ecmascript6", "java", "php", "ruby", "typescript"];
+var supported_languages = ["coffeescript", "csharp", "ecmascript5", "ecmascript6", "java", "php", "ruby", "typescript","swift"];
 
 var args = process.argv.slice(2); // Trim "node" and the script path.
 
@@ -20,6 +20,15 @@ hbs.registerHelper('if_ne', function(a, b, opts) {
     } else {
         return opts.inverse(this);
     }
+});
+
+// sReturnType Check
+hbs.registerHelper('if_ne2', function(a, b, opts) {
+  if (a["sReturnType"] != b) {
+      return opts.fn(this);
+  } else {
+      return opts.inverse(this);
+  }
 });
 
 if (args.length === 0) {
