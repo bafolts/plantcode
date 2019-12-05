@@ -30,6 +30,7 @@ class NamesInThings {
   private String1 field1;
   private String _some_private;
   private String_2 field_2;
+  private String member_d;
   public void member() {
   }
   public String1 member2() {

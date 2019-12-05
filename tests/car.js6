@@ -22,6 +22,7 @@ class NamesInThings {
     this.field1 = undefined;
     this._some_private = undefined;
     this.field_2 = undefined;
+    this.member_d = undefined;
   },
   member: function () {},
   member2: function () {},

@@ -33,6 +33,7 @@ class NamesInThings {
   private field1 : String1;
   private _some_private : String;
   private field_2 : String_2;
+  private member_d : String;
   member() {
     return;
   }

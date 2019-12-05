@@ -35,6 +35,7 @@ class NamesInThings {
   private field1;
   private _some_private;
   private field_2;
+  private member_d;
   public function member() {
   }
   public function member2() {

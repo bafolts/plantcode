@@ -1,6 +1,6 @@
 {
   "name": "plantcode",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "PlantUML to class file generator.",
   "author": "Brian Folts <brian.folts@gmail.com>",
   "main": "plantcode",
@@ -14,7 +14,7 @@
     "url": "git://github.com/bafolts/plantuml-code-generator.git"
   },
   "dependencies": {
-    "handlebars": "^4.0.5"
+    "handlebars": "^4.5.3"
   },
   "devDependencies": {
     "istanbul": "^0.4.3",

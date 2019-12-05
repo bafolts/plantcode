@@ -31,6 +31,7 @@ class NamesInThings
   @field1
   @_some_private
   @field_2
+  @member_d
   def member
     return
   end

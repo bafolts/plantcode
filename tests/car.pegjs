@@ -30,6 +30,7 @@ class NamesInThings {
   - String1 member2()
   # void member3()
   - String2 member_s()
+  - String : member_d
 }
   
 class Toyota

@@ -17,6 +17,7 @@
   NamesInThings.prototype.field1 = undefined;
   NamesInThings.prototype._some_private = undefined;
   NamesInThings.prototype.field_2 = undefined;
+  NamesInThings.prototype.member_d = undefined;
   NamesInThings.prototype.member = function () {};
   NamesInThings.prototype.member2 = function () {};
   NamesInThings.prototype.member3 = function () {};

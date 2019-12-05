@@ -19,6 +19,7 @@ class NamesInThings
   field1: undefined
   _some_private: undefined
   field_2: undefined
+  member_d: undefined
   member:  ->
   member2:  ->
   member3:  ->
