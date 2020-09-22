@@ -3,7 +3,28 @@ var hbs = require("handlebars");
 var parser = require("./plantuml");
 var os = require("os");
 
-var supported_languages = ["coffeescript", "csharp", "ecmascript5", "ecmascript6", "java", "php", "ruby", "typescript"];
+var supported_languages = ["coffeescript", "csharp", "ecmascript5", "ecmascript6", "java", "php", "python", "ruby", "typescript", "swift"];
+
+hbs.registerHelper('if_ne', function(a, b, opts) {
+    if (a() != b) {
+        return opts.fn(this);
+    } else {
+        return opts.inverse(this);
+    }
+});
+
+// sReturnType Check
+hbs.registerHelper('if_ne2', function(a, b, opts) {
+  if (a["sReturnType"] != b) {
+      return opts.fn(this);
+  } else {
+      return opts.inverse(this);
+  }
+});
+
+hbs.registerHelper('call', function (context, member, options) {
+   return member.call(context);
+});
 
 function convertFile(config) {
 
@@ -59,33 +80,6 @@ function processTemplateFile(config, templateData, dictionary) {
   }
 
 }
-
-// Workaround for an apparent bug in Handlebars: functions are not called with the parent scope
-// as context.
-//
-// Here the getFullName is found in the parent scope (Class), but it is called with the current
-// scope (Field) as context:
-//
-// {{#each getFields}}
-//   {{../getFullName}}
-// {{/each}}
-//
-// The following helper works around it:
-//
-// {{#each getFields}}
-//   {{#call ../this ../getFullName}}
-// {{/each}}
-hbs.registerHelper('if_ne', function(a, b, opts) {
-    if (a() != b) {
-        return opts.fn(this);
-    } else {
-        return opts.inverse(this);
-    }
-});
-
-hbs.registerHelper('call', function (context, member, options) {
-   return member.call(context);
-});
 
 exports.getSupportedLanguages = getSupportedLanguages;
 exports.convertFile = convertFile;

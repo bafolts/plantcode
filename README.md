@@ -28,6 +28,7 @@ The currently supported languages are
 * ECMAScript6 (javascript2.0)
 * Java (java)
 * PHP (php)
+* Python (python)
 * Ruby (ruby)
 * TypeScript (typescript)
 
