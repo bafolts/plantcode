@@ -45,6 +45,14 @@ var inputs = [{
   language: "ecmascript6",
   input: "tests/car.pegjs",
   output: "tests/car.js6"
+}, {
+  language: "swift",
+  input: "tests/car.pegjs",
+  output: "tests/car.swift"
+}, {
+  language: "python",
+  input: "tests/car.pegjs",
+  output: "tests/car.py"
 }];
 
 for(var i = 0; i < inputs.length; i++) {

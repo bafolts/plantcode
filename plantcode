@@ -10,7 +10,7 @@ var options = {
   output: null
 };
 
-var supported_languages = ["coffeescript", "csharp", "ecmascript5", "ecmascript6", "java", "php", "ruby", "typescript","swift"];
+var supported_languages = ["coffeescript", "csharp", "ecmascript5", "ecmascript6", "java", "php", "python", "ruby", "typescript","swift"];
 
 var args = process.argv.slice(2); // Trim "node" and the script path.
 

@@ -35,6 +35,7 @@ class NamesInThings {
   var field1: String1?  = nil;
   var _some_private: String?  = nil;
   var field_2: String_2?  = nil;
+  var member_d: String?  = nil;
   func member(){
     
   }
@@ -68,7 +69,6 @@ class Ford : Car {
 
 class Hyundai : Car {
 }
-
 
 
 

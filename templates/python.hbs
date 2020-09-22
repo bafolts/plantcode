@@ -1,0 +1,11 @@
+class {{getFullName}}{{#if getExtends}}({{#with getExtends}}{{getFullName}}{{/with}}){{/if}}:
+    def __init__(self):
+{{#each getFields}}
+        self.{{this.getName}} = None;
+{{/each}}
+        pass;
+{{#each getMethods}}
+    def {{this.getName}}{{#if this.getParameters}}({{#each this.getParameters}}{{#if @first}}{{else}},{{/if}}{{#if this.getName}}{{this.getName}}{{else}}param{{@index}}{{/if}}{{/each}}){{else}}(){{/if}}:
+        pass;
+{{/each}}
+
