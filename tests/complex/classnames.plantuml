@@ -2,8 +2,7 @@
 ' node node_modules/pegjs/bin/pegjs src/plantuml.pegjs src/plantuml.js
 ' node plantcode -l coffeescript tests/complex/classnames.plantuml > tests/complex/classnames.coffee
 
-class someclass {
-}
+class someclass
 
 class §$noQuotes|_:;~#!§$()[]+-*\/,| {
 }
@@ -12,6 +11,11 @@ class "inQuotes" {
 }
 
 class "AZaz09 |_:;~#!§$()[]+-*\/,{}|" {
+}
+
+class "withDescr1" <<something>>
+
+class "withDescr2" <<some { } thing>> {
 }
 
 @enduml
