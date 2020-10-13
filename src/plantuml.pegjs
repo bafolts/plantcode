@@ -79,17 +79,17 @@ newline
   = [\r\n]
   / [\n]
 classdeclaration
-  = noise "class " noise classname:objectname noise startblock lines:umllines endblock { var Class = require("./Class"); return new Class(classname, lines) }
-  / noise "class " noise classname:objectname noise "<<" noise [^>]+ noise ">>" noise { var Class = require("./Class"); return new Class(classname) }
-  / noise "class " noise classname:objectname noise { var Class = require("./Class"); return new Class(classname) }
-  / noise "class " noise classname:objectname noise newline noise lines:umllines "end class" { var Class = require("./Class"); return new Class(classname, lines) }
+  = noise "class " noise classname:objectname noise color? noise startblock lines:umllines endblock { var Class = require("./Class"); return new Class(classname, lines) }
+  / noise "class " noise classname:objectname noise color? noise "<<" noise [^>]+ noise ">>" noise { var Class = require("./Class"); return new Class(classname) }
+  / noise "class " noise classname:objectname noise color? noise { var Class = require("./Class"); return new Class(classname) }
+  / noise "class " noise classname:objectname noise color? noise newline noise lines:umllines "end class" { var Class = require("./Class"); return new Class(classname, lines) }
 interfacedeclaration
   = noise "interface " noise interfacename:objectname noise startblock lines:umllines endblock { var Interface = require("./Interface"); return new Interface(interfacename, lines) }
   / noise "interface " noise interfacename:objectname noise "<<" noise [^>]+ noise ">>" noise { var Interface = require("./Interface"); return new Interface(interfacename) }
   / noise "interface " noise interfacename:objectname noise { var Interface = require("./Interface"); return new Interface(interfacename) }
   / noise "interface " noise interfacename:objectname noise newline noise lines:umllines "end interface" { var  Interface = require("./Interface"); return new Interface(interfacename, lines) }
 color
-  = [#][0-9a-fA-F]+
+  = [#][0-9a-fA-F]+[-\|\\/]?[0-9a-fA-F]*
 namespacedeclaration
   = noise "namespace " noise namespacename:objectname noise color? noise startblock lines:umllines endblock { var Namespace = require("./Namespace"); return new Namespace(namespacename, lines) }
   / noise "namespace " noise namespacename:objectname noise newline umllines "end namespace" { var Namespace = require("./Namespace"); return new Namespace(namespacename) }
