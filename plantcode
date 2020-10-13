@@ -171,7 +171,21 @@ function processTemplateFile(config, templateData, dictionary) {
 
   dictionary.forEach(function (element) {
     element.getClasses().forEach(function (element) {
-      output += template(element) + os.EOL + os.EOL;
+      output += template(element, {
+        allowedProtoMethods: {
+         "getExtends": true,
+         "getFields": true,
+         "getFullName": true,
+         "getKeyword": true,
+         "getMethods": true,
+         "getName": true,
+         "getParameters": true,
+         "getReturnType": true,
+         "hasFields": true,
+         "hasMethods": true,
+         "needsReturnStatement": true
+        }
+      }) + os.EOL + os.EOL;
     })
   })
 
