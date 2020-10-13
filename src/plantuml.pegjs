@@ -111,7 +111,8 @@ methodparameter
 returntype
   = items:[^ ,\n\r\t(){}]+ { return items.join("") }
 objectname
-  = objectname:([A-Za-z_][A-Za-z0-9.]*) { return [objectname[0], objectname[1].join("")].join("") }
+  = item:(richchars) { return item.join("") }
+  / "\"" item:(richerchars) "\"" { return item.join("") }
 membername
   = items:([A-Za-z_][A-Za-z0-9_]*) { return [items[0], items[1].join("")].join("") }
 accessortype
@@ -124,3 +125,7 @@ privateaccessor
   = [-]
 protectedaccessor
   = [#]
+richchars
+  = [A-Za-z0-9_:;~#!§$()\[\]\+\-\*\\/|,]+
+richerchars
+  = [A-Za-z0-9_:;~#!§$()\[\]\+\-\*\\/|,{} ]+
