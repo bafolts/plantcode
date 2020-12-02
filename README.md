@@ -31,6 +31,7 @@ The currently supported languages are
 * Python (python)
 * Ruby (ruby)
 * TypeScript (typescript)
+* Swift (swift)
 
 ## PEG.js
 The most recent version of [PlantUML](http://plantuml.sourceforge.net/) does not have a defined grammar to use with
