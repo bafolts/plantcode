@@ -19,6 +19,18 @@ module.exports = (function () {
     return this.sFieldName;
   }
 
+  Field.prototype.isPrivate = function () {
+    return this.sAccessType === '-';
+  }
+
+  Field.prototype.isProtected = function () {
+    return this.sAccessType === '#';
+  }
+
+  Field.prototype.isPublic = function () {
+    return this.sAccessType === '+';
+  }
+
   return Field;
 
 })()
