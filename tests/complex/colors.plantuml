@@ -1,0 +1,26 @@
+@startuml
+
+' node node_modules/pegjs/bin/pegjs src/plantuml.pegjs src/plantuml.js
+' node plantcode -l coffeescript tests/complex/colors.plantuml > tests/complex/colors.coffee
+
+class singlecolor #FFAA00 {
+    
+}
+
+class multicolor1 #FFAA00-0000FF {
+    
+}
+
+class multicolor2 #FFAA00|0000FF {
+    
+}
+
+class multicolor3 #FFAA00/0000FF {
+    
+}
+
+class multicolor4 #FFAA00\0000FF {
+    
+}
+
+@enduml
