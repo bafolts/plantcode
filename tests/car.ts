@@ -1,49 +1,49 @@
 abstract class Car {
-  private model : String;
+  protected model : String;
   private make : String;
   private year : Number;
-  setModel(model) {
+  public setModel(model) {
     return;
   }
-  setMake(make) {
+  public setMake(make) {
     return;
   }
-  setYear(param0) {
+  public setYear(param0) {
     return;
   }
-  getModel() {
+  public getModel() {
     return;
   }
-  getMake() {
+  public getMake() {
     return;
   }
-  getYear() {
+  public getYear() {
     return;
   }
 }
 
 
 interface Driver {
-  private name : String;
+  public name : String;
 }
 
 
 class NamesInThings {
-  private field : String;
-  private field1 : String1;
+  public field : String;
+  public field1 : String1;
   private _some_private : String;
   private field_2 : String_2;
   private member_d : String;
-  member() {
+  public member() {
     return;
   }
-  member2() {
+  private member2() {
     return;
   }
-  member3() {
+  protected member3() {
     return;
   }
-  member_s() {
+  private member_s() {
     return;
   }
 }

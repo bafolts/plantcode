@@ -77,6 +77,9 @@ function processTemplateFile(config, templateData, dictionary) {
          "getReturnType": true,
          "hasFields": true,
          "hasMethods": true,
+         "isPrivate": true,
+         "isProtected": true,
+         "isPublic": true,
          "needsReturnStatement": true
         }
       }) + os.EOL + os.EOL;

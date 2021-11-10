@@ -12,7 +12,7 @@ abstract Car {
   + String getModel()
   + String getMake()
   + Number getYear()
-  - String model
+  # String model
   - String make
   - Number year
 }
