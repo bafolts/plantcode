@@ -4,10 +4,11 @@ module.exports = (function () {
   var Field = require("./Field");
   var Method = require("./Method");
 
-  var Class = function (className, fileLines) {
+  var Class = function (className, fileLines, classType) {
     this.cExtends = null;
     this.fileLines = fileLines || [];
     this.className = className;
+    this.classType = classType || "";
     this.nNamespace = null;
   }
 
@@ -37,6 +38,10 @@ module.exports = (function () {
 
   Class.prototype.getName = function () {
     return this.className;
+  }
+ 
+  Class.prototype.getType = function () {
+    return this.classType;
   }
  
   Class.prototype.hasMethods = function () {

@@ -73,6 +73,7 @@ function processTemplateFile(config, templateData, dictionary) {
          "getKeyword": true,
          "getMethods": true,
          "getName": true,
+         "getType": true,
          "getParameters": true,
          "getReturnType": true,
          "hasFields": true,

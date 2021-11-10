@@ -79,10 +79,9 @@ newline
   = [\r\n]
   / [\n]
 classdeclaration
-  = noise "class " noise classname:objectname noise startblock lines:umllines endblock { var Class = require("./Class"); return new Class(classname, lines) }
-  / noise "class " noise classname:objectname noise "<<" noise [^>]+ noise ">>" noise { var Class = require("./Class"); return new Class(classname) }
-  / noise "class " noise classname:objectname noise { var Class = require("./Class"); return new Class(classname) }
-  / noise "class " noise classname:objectname noise newline noise lines:umllines "end class" { var Class = require("./Class"); return new Class(classname, lines) }
+  = noise "class " noise classname:objectname noise classtype:objecttype? noise startblock lines:umllines endblock       { var Class = require("./Class"); return new Class(classname, lines, classtype) }
+  / noise "class " noise classname:objectname noise classtype:objecttype? noise                                          { var Class = require("./Class"); return new Class(classname, null, classtype) }
+  / noise "class " noise classname:objectname noise classtype:objecttype? noise newline noise lines:umllines "end class" { var Class = require("./Class"); return new Class(classname, lines, classtype) }
 interfacedeclaration
   = noise "interface " noise interfacename:objectname noise startblock lines:umllines endblock { var Interface = require("./Interface"); return new Interface(interfacename, lines) }
   / noise "interface " noise interfacename:objectname noise "<<" noise [^>]+ noise ">>" noise { var Interface = require("./Interface"); return new Interface(interfacename) }
@@ -111,7 +110,10 @@ methodparameter
 returntype
   = items:[^ ,\n\r\t(){}]+ { return items.join("") }
 objectname
-  = objectname:([A-Za-z_][A-Za-z0-9.]*) { return [objectname[0], objectname[1].join("")].join("") }
+  = item:(richchars) { return item.join("") }
+  / "\"" item:(richerchars) "\"" { return item.join("") }
+objecttype
+  = "<<" noise item:(richerchars) noise ">>" { return item.join("") }
 membername
   = items:([A-Za-z_][A-Za-z0-9_]*) { return [items[0], items[1].join("")].join("") }
 accessortype
@@ -124,3 +126,7 @@ privateaccessor
   = [-]
 protectedaccessor
   = [#]
+richchars
+  = [A-Za-z0-9_:;~#!§$()\[\]\+\-\*\\/|,]+
+richerchars
+  = [A-Za-z0-9_:;~#!§$()\[\]\+\-\*\\/|,{} ]+

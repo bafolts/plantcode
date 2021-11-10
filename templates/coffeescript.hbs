@@ -1,4 +1,5 @@
 {{#if_ne getKeyword "interface"}}class {{getFullName}}{{#if getExtends}} extends {{#with getExtends}}{{getFullName}}{{/with}}{{/if}}
+{{#if getType}}# was typed as <<{{getType}}>>{{/if}}
 {{#each getFields}}
   {{this.getName}}: undefined
 {{/each}}
