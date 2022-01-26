@@ -20,6 +20,9 @@ abstract class Car {
   public getYear() {
     return;
   }
+  public getDescription() {
+    return;
+  }
 }
 
 

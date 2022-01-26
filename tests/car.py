@@ -16,6 +16,8 @@ class Car:
         pass;
     def getYear():
         pass;
+    def getDescription():
+        pass;
 
 
 

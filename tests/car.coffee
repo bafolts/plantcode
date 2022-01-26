@@ -8,6 +8,7 @@ class Car
   getModel:  ->
   getMake:  ->
   getYear:  ->
+  getDescription:  ->
 
 
 

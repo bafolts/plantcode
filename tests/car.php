@@ -18,6 +18,9 @@ abstract class Car {
   public function getYear() {
       return null;
   }
+  public function getDescription() {
+      return null;
+  }
 }
 ?>
 

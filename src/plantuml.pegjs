@@ -73,8 +73,6 @@ abstractclassdeclaration
   / noise "abstract " noise "class "? noise classname:objectname noise newline noise lines:umllines "end class" { var AbstractClass = require("./AbstractClass"); return new AbstractClass(classname, lines) }
 noise
   = [ \t]*
-noiseWithColon
-  = [ \t:]*
 newline
   = [\r\n]
   / [\n]
@@ -99,11 +97,14 @@ memberdeclaration
   = declaration:methoddeclaration { return declaration }
   / declaration:fielddeclaration { return declaration }
 fielddeclaration
-  = noise accessortype:accessortype noise returntype:returntype noiseWithColon membername:membername noise { var Field = require("./Field"); return new Field(accessortype, returntype, membername) }
+  = noise accessortype:accessortype noise returntype:returntype noise membername:membername noise { var Field = require("./Field"); return new Field(accessortype, returntype, membername) }
+  / noise accessortype:accessortype noise membername:membername noise [:] noise returntype:returntype noise { var Field = require("./Field"); return new Field(accessortype, returntype, membername) }
   / noise accessortype:accessortype noise membername:membername noise { var Field = require("./Field"); return new Field(accessortype, "void", membername) }
-  / noise returntype:returntype noiseWithColon membername:membername noise { var Field = require("./Field"); return new Field("+", returntype, membername) }
+  / noise returntype:returntype noise membername:membername noise { var Field = require("./Field"); return new Field("+", returntype, membername) }
+  / noise membername:membername noise [:] noise returntype:returntype noise { var Field = require("./Field"); return new Field("+", returntype, membername) }
 methoddeclaration
-  = noise field:fielddeclaration [(] parameters:methodparameters [)] noise { var Method = require("./Method"); return new Method(field.getAccessType(), field.getReturnType(), field.getName(), parameters); }
+  = noise field:fielddeclaration [(] parameters:methodparameters [)] noise [:] noise returntype:returntype noise { var Method = require("./Method"); return new Method(field.getAccessType(), returntype, field.getName(), parameters); }
+  / noise field:fielddeclaration [(] parameters:methodparameters [)] noise { var Method = require("./Method"); return new Method(field.getAccessType(), field.getReturnType(), field.getName(), parameters); }
 methodparameters
   = items:methodparameter* { return items; }
 methodparameter
