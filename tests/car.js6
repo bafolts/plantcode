@@ -9,7 +9,8 @@ class Car {
   setYear: function (param0) {},
   getModel: function () {},
   getMake: function () {},
-  getYear: function () {}
+  getYear: function () {},
+  getDescription: function () {}
 }
 
 

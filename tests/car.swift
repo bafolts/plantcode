@@ -20,6 +20,9 @@ class Car {
   func getYear() -> Number{
      return Number()
   }
+  func getDescription() -> String{
+     return String()
+  }
 }
 
 

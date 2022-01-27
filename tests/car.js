@@ -8,6 +8,7 @@
   Car.prototype.getModel = function () {};
   Car.prototype.getMake = function () {};
   Car.prototype.getYear = function () {};
+  Car.prototype.getDescription = function () {};
 
 
 

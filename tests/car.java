@@ -17,6 +17,9 @@ abstract class Car {
   public Number getYear() {
       return null;
   }
+  public String getDescription() {
+      return null;
+  }
 }
 
 

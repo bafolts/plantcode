@@ -20,6 +20,9 @@ class Car
   def getYear
     return
   end
+  def getDescription
+    return
+  end
 end
 
 

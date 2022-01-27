@@ -225,5 +225,5 @@ If you update the PEGJS grammar file `src/plantuml.pegjs` you must run this comm
 `src/plantuml.js` file.
 
 ```
-npm run-script peg-update
+npm run build
 ```

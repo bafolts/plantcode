@@ -12,6 +12,7 @@ abstract Car {
   + String getModel()
   + String getMake()
   + Number getYear()
+  + getDescription() : String
   # String model
   - String make
   - Number year
@@ -30,14 +31,14 @@ class NamesInThings {
   - String1 member2()
   # void member3()
   - String2 member_s()
-  - String : member_d
+  - member_d : String
 }
-  
+
 class Toyota
 class Honda
 class Ford
 class Hyundai
-  
+
 Toyota -left-|> Car
 Honda -right-|> Car
 Ford -up-|> Car
