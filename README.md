@@ -49,11 +49,13 @@ umlline
   / titleset newline { return null }
   / noise newline { return null }
   / commentline { return null }
+  / noteline { return null }
   / hideline newline { return null }
   / skinparams newline { return null }
   / declaration:packagedeclaration newline { return declaration }
   / declaration:namespacedeclaration newline { return declaration }
   / declaration:classdeclaration newline { return declaration }
+  / declaration:interfacedeclaration newline { return declaration }
   / declaration:abstractclassdeclaration newline { return declaration }
   / declaration:memberdeclaration newline { return declaration }
   / declaration:connectordeclaration newline { return declaration }
@@ -69,6 +71,11 @@ titleset
   = noise "title " noise [^\r\n]+ noise
 commentline
   = noise "'" [^\r\n]+ noise
+  / noise ".." [^\r\n\.]+ ".." noise
+  / noise "--" [^\r\n\-]+ "--" noise
+  / noise "__" [^\r\n\_]+ "__" noise
+noteline
+  = noise "note " noise [^\r\n]+ noise
 connectortype
   = item:extends { return item }
   / concatenates { var Composition = require("./Composition"); return new Composition() }
@@ -79,6 +86,11 @@ extends
   / connectorsize "|>" { var Extension = require("./Extension"); return new Extension(false) }
 connectorsize
   = ".."
+  / "-up-"
+  / "-down-"
+  / "-left-"
+  / "-right-"
+  / "---"
   / "--"
   / [.]
   / [-]
@@ -108,8 +120,14 @@ newline
   / [\n]
 classdeclaration
   = noise "class " noise classname:objectname noise startblock lines:umllines endblock { var Class = require("./Class"); return new Class(classname, lines) }
+  / noise "class " noise classname:objectname noise "<<" noise [^>]+ noise ">>" noise { var Class = require("./Class"); return new Class(classname) }
   / noise "class " noise classname:objectname noise { var Class = require("./Class"); return new Class(classname) }
   / noise "class " noise classname:objectname noise newline noise lines:umllines "end class" { var Class = require("./Class"); return new Class(classname, lines) }
+interfacedeclaration
+  = noise "interface " noise interfacename:objectname noise startblock lines:umllines endblock { var Interface = require("./Interface"); return new Interface(interfacename, lines) }
+  / noise "interface " noise interfacename:objectname noise "<<" noise [^>]+ noise ">>" noise { var Interface = require("./Interface"); return new Interface(interfacename) }
+  / noise "interface " noise interfacename:objectname noise { var Interface = require("./Interface"); return new Interface(interfacename) }
+  / noise "interface " noise interfacename:objectname noise newline noise lines:umllines "end interface" { var  Interface = require("./Interface"); return new Interface(interfacename, lines) }
 color
   = [#][0-9a-fA-F]+
 namespacedeclaration
@@ -122,8 +140,13 @@ memberdeclaration
   / declaration:fielddeclaration { return declaration }
 fielddeclaration
   = noise accessortype:accessortype noise returntype:returntype noise membername:membername noise { var Field = require("./Field"); return new Field(accessortype, returntype, membername) }
+  / noise accessortype:accessortype noise membername:membername noise [:] noise returntype:returntype noise { var Field = require("./Field"); return new Field(accessortype, returntype, membername) }
+  / noise accessortype:accessortype noise membername:membername noise { var Field = require("./Field"); return new Field(accessortype, "void", membername) }
+  / noise returntype:returntype noise membername:membername noise { var Field = require("./Field"); return new Field("+", returntype, membername) }
+  / noise membername:membername noise [:] noise returntype:returntype noise { var Field = require("./Field"); return new Field("+", returntype, membername) }
 methoddeclaration
-  = noise field:fielddeclaration [(] parameters:methodparameters [)] noise { var Method = require("./Method"); return new Method(field.getAccessType(), field.getReturnType(), field.getName(), parameters); }
+  = noise field:fielddeclaration [(] parameters:methodparameters [)] noise [:] noise returntype:returntype noise { var Method = require("./Method"); return new Method(field.getAccessType(), returntype, field.getName(), parameters); }
+  / noise field:fielddeclaration [(] parameters:methodparameters [)] noise { var Method = require("./Method"); return new Method(field.getAccessType(), field.getReturnType(), field.getName(), parameters); }
 methodparameters
   = items:methodparameter* { return items; }
 methodparameter
