@@ -1,0 +1,12 @@
+{{getKeyword}} {{getFullName}}{{#if getExtends}} : {{#with getExtends}}{{getFullName}}{{/with}}(){{/if}} {
+{{#each getFields}}
+  var {{this.getReturnType}} {{this.getName}}: {{this.getReturnType}}
+{{/each}}
+{{#each getMethods}}
+  public fun {{this.getName}}{{#if this.getParameters}}({{#each this.getParameters}}{{#if @first}}{{else}},{{/if}}{{this.getReturnType}} {{#if this.getName}}{{this.getName}}{{else}}param{{@index}}{{/if}}{{/each}}){{else}}(): {{this.getReturnType}}{{/if}} {
+    {{#if this.needsReturnStatement}}
+      return null
+    {{/if}}
+  }
+{{/each}}
+}
