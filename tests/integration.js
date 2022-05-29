@@ -53,6 +53,10 @@ var inputs = [{
   language: "python",
   input: "tests/car.pegjs",
   output: "tests/car.py"
+}, {
+  language: "python",
+  input: "tests/car.pegjs",
+  output: "tests/car.kt"
 }];
 
 for(var i = 0; i < inputs.length; i++) {
