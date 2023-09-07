@@ -2,8 +2,9 @@ var fs = require("fs");
 var hbs = require("handlebars");
 var parser = require("./plantuml");
 var os = require("os");
+var templates = require("../templates/index");
 
-var supported_languages = ["coffeescript", "csharp", "ecmascript5", "ecmascript6", "java", "php", "python", "ruby", "typescript", "swift"];
+var supported_languages = ["coffeescript", "csharp", "ecmascript5", "ecmascript6", "java", "php", "python", "ruby", "typescript", "swift", "kotlin"];
 
 hbs.registerHelper('if_ne', function(a, b, opts) {
     if (a() != b) {
@@ -48,13 +49,12 @@ function processInputFile(config, data) {
   } catch(e) {
     console.error("Error parsing input file: ", config.input, e);
   }
-  fs.readFile("templates/" + config.language + ".hbs", { encoding: "UTF-8" }, function (err, data) {
-    if (err === null) {
-      processTemplateFile(config, data, aUMLBlocks);
-    } else {
-      console.error("Unable to read template file for " + config.language + ".");
-    }
-  });
+  var data = templates[config.language];
+  if (data === undefined) {
+    console.error("Unable to read template file for " + config.language + ".");
+    return;
+  }
+  processTemplateFile(config, data, aUMLBlocks);
 }
 
 function processTemplateFile(config, templateData, dictionary) {

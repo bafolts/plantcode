@@ -3,14 +3,16 @@
 var fs = require("fs");
 var hbs = require("handlebars");
 var parser = require("./src/plantuml");
+var index = require("./src/plantcode");
+var templates = require("./templates/index");
 var os = require("os");
 
 var options = {
-  language: "coffeescript",
+  language: "typescript",
   output: null
 };
 
-var supported_languages = ["coffeescript", "csharp", "ecmascript5", "ecmascript6", "java", "php", "python", "ruby", "typescript","swift", "kotlin"];
+var supported_languages = index.getSupportedLanguages();
 
 var args = process.argv.slice(2); // Trim "node" and the script path.
 
@@ -154,13 +156,12 @@ function processInputFile(config, data) {
   } catch(e) {
     abort("Error parsing input file: ", config.input, e);
   }
-  fs.readFile("templates/" + config.language + ".hbs", { encoding: "UTF-8" }, function (err, data) {
-    if (err === null) {
-      processTemplateFile(config, data, aUMLBlocks);
-    } else {
-      abort("Unable to read template file for " + config.language + ".");
-    }
-  });
+  var data = templates[config.language];
+  if (data === undefined) {
+    abort("Unable to read template file for " + config.language + ".");
+    return;
+  }
+  processTemplateFile(config, data, aUMLBlocks);
 }
 
 function processTemplateFile(config, templateData, dictionary) {

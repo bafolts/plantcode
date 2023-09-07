@@ -54,7 +54,7 @@ var inputs = [{
   input: "tests/car.pegjs",
   output: "tests/car.py"
 }, {
-  language: "python",
+  language: "kotlin",
   input: "tests/car.pegjs",
   output: "tests/car.kt"
 }];

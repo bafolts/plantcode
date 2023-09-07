@@ -5,7 +5,7 @@
   "author": "Brian Folts <brian.folts@gmail.com>",
   "main": "plantcode",
   "scripts": {
-    "build": "node node_modules/pegjs/bin/pegjs src/plantuml.pegjs src/plantuml.js",
+    "build": "node scripts/build_templates.js && node node_modules/pegjs/bin/pegjs src/plantuml.pegjs src/plantuml.js",
     "test": "node node_modules/.bin/nyc node tests/integration.js"
   },
   "bin": "plantcode",
