@@ -23,12 +23,26 @@ hbs.registerHelper('if_ne2', function(a, b, opts) {
   }
 });
 
+// Workaround for an apparent bug in Handlebars: functions are not called with the parent scope
+// as context.
+//
+// Here the getFullName is found in the parent scope (Class), but it is called with the current
+// scope (Field) as context:
+//
+// {{#each getFields}}
+//   {{../getFullName}}
+// {{/each}}
+//
+// The following helper works around it:
+//
+// {{#each getFields}}
+//   {{#call ../this ../getFullName}}
+// {{/each}}
 hbs.registerHelper('call', function (context, member, options) {
    return member.call(context);
 });
 
 function convertFile(config) {
-
   fs.readFile(config.input, { encoding: "UTF-8" }, function (err, data) {
     if (err === null) {
       processInputFile(config, data);
@@ -40,7 +54,7 @@ function convertFile(config) {
 }
 
 function getSupportedLanguages() {
-	return supported_languages;
+  return supported_languages;
 }
 
 function processInputFile(config, data) {
@@ -48,6 +62,7 @@ function processInputFile(config, data) {
     var aUMLBlocks = parser.parse(data);
   } catch(e) {
     console.error("Error parsing input file: ", config.input, e);
+    return;
   }
   var data = templates[config.language];
   if (data === undefined) {

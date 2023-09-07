@@ -16,27 +16,10 @@ var supported_languages = index.getSupportedLanguages();
 
 var args = process.argv.slice(2); // Trim "node" and the script path.
 
-hbs.registerHelper('if_ne', function(a, b, opts) {
-    if (a() != b) {
-        return opts.fn(this);
-    } else {
-        return opts.inverse(this);
-    }
-});
-
-// sReturnType Check
-hbs.registerHelper('if_ne2', function(a, b, opts) {
-  if (a["sReturnType"] != b) {
-      return opts.fn(this);
-  } else {
-      return opts.inverse(this);
-  }
-});
-
 if (args.length === 0) {
   printUsage();
 } else {
-  convertFile(getArguments());
+  index.convertFile(getArguments());
 }
 
 function printLanguages() {
@@ -115,18 +98,6 @@ function getArguments() {
 
 }
 
-function convertFile(config) {
-
-  fs.readFile(config.input, { encoding: "UTF-8" }, function (err, data) {
-    if (err === null) {
-      processInputFile(config, data);
-    } else {
-      console.error("Unable to read input file.");
-    }
-  });
-
-}
-
 function exitFailure() {
   process.exit(1);
 }
@@ -150,78 +121,3 @@ function nextArg() {
   args.shift();
 }
 
-function processInputFile(config, data) {
-  try {
-    var aUMLBlocks = parser.parse(data);
-  } catch(e) {
-    abort("Error parsing input file: ", config.input, e);
-  }
-  var data = templates[config.language];
-  if (data === undefined) {
-    abort("Unable to read template file for " + config.language + ".");
-    return;
-  }
-  processTemplateFile(config, data, aUMLBlocks);
-}
-
-function processTemplateFile(config, templateData, dictionary) {
-
-  var template = hbs.compile(templateData);
-
-  var output = "";
-
-  dictionary.forEach(function (element) {
-    element.getClasses().forEach(function (element) {
-      output += template(element, {
-        allowedProtoMethods: {
-         "getExtends": true,
-         "getFields": true,
-         "getFullName": true,
-         "getKeyword": true,
-         "getMethods": true,
-         "getName": true,
-         "getParameters": true,
-         "getReturnType": true,
-         "hasFields": true,
-         "hasMethods": true,
-         "isPrivate": true,
-         "isProtected": true,
-         "isPublic": true,
-         "needsReturnStatement": true
-        }
-      }) + os.EOL + os.EOL;
-    })
-  })
-
-  if (config.output === null) {
-    console.log(output);
-  } else {
-    fs.writeFile(config.output, output, function (err) {
-      if (err !== null) {
-        abort("Unable to write output file for " + config.output + ".");
-      }
-    })
-  }
-
-}
-
-// Workaround for an apparent bug in Handlebars: functions are not called with the parent scope
-// as context.
-//
-// Here the getFullName is found in the parent scope (Class), but it is called with the current
-// scope (Field) as context:
-//
-// {{#each getFields}}
-//   {{../getFullName}}
-// {{/each}}
-//
-// The following helper works around it:
-//
-// {{#each getFields}}
-//   {{#call ../this ../getFullName}}
-// {{/each}}
-hbs.registerHelper('call', function (context, member, options) {
-   return member.call(context);
-});
-
-exports.convertFile = convertFile;
