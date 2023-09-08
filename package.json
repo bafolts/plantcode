@@ -1,6 +1,6 @@
 {
   "name": "plantcode",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "PlantUML to class file generator.",
   "author": "Brian Folts <brian.folts@gmail.com>",
   "main": "plantcode",

@@ -45,19 +45,27 @@ hbs.registerHelper('call', function (context, member, options) {
 function convertFile(config) {
   fs.readFile(config.input, { encoding: "UTF-8" }, function (err, data) {
     if (err === null) {
-      processInputFile(config, data);
+      var output = convertText(config, data);
+      if (config.output === null) {
+        console.log(output);
+      } else {
+        fs.writeFile(config.output, output, function (err) {
+          if (err !== null) {
+            console.error("Unable to write output file for " + config.output + ".");
+          }
+        })
+      }
     } else {
       console.error("Unable to read input file.");
     }
   });
-
 }
 
 function getSupportedLanguages() {
   return supported_languages;
 }
 
-function processInputFile(config, data) {
+function convertText(config, data) {
   try {
     var aUMLBlocks = parser.parse(data);
   } catch(e) {
@@ -69,11 +77,10 @@ function processInputFile(config, data) {
     console.error("Unable to read template file for " + config.language + ".");
     return;
   }
-  processTemplateFile(config, data, aUMLBlocks);
+  return processTemplateFile(config, data, aUMLBlocks);
 }
 
 function processTemplateFile(config, templateData, dictionary) {
-
   var template = hbs.compile(templateData);
 
   var output = "";
@@ -101,17 +108,9 @@ function processTemplateFile(config, templateData, dictionary) {
     })
   })
 
-  if (config.output === null) {
-    console.log(output);
-  } else {
-    fs.writeFile(config.output, output, function (err) {
-      if (err !== null) {
-        console.error("Unable to write output file for " + config.output + ".");
-      }
-    })
-  }
-
+  return output;
 }
 
 exports.getSupportedLanguages = getSupportedLanguages;
 exports.convertFile = convertFile;
+exports.convertText = convertText;
