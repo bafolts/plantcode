@@ -1,4 +1,4 @@
-# plantuml-code-generator
+# plantcode
 
 Provides a command line utility to generate code in various languages given a plantuml class diagram.
 
