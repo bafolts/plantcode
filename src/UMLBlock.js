@@ -8,7 +8,6 @@ module.exports = (function () {
   var Package = require("./Package");
   var Extension = require("./Extension");
   var Interface = require("./Interface");
-  var util = require("util");
 
   var UMLBlock = function (fileLines) {
 

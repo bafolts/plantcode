@@ -1,5 +1,7 @@
 var plantcode = require("../src/plantcode");
 var exec = require('child_process').exec;
+var AbstractClass = require('../src/AbstractClass');
+var Method = require("../src/Method");
 
 var inputs = [{
   language: "java",
@@ -73,3 +75,13 @@ for(var i = 0; i < inputs.length; i++) {
     }
   );
 }
+
+const abstractClass = new AbstractClass("FooBar", []);
+console.assert(abstractClass.getKeyword() === "abstract class");
+console.assert(abstractClass.getName() === "FooBar");
+console.assert(abstractClass.isAbstract() === true);
+
+const method = new Method("public", "string", "foobar", []);
+console.assert(method.getReturnType() === "string");
+console.assert(method.getParameters().length === 0);
+console.assert(method.needsReturnStatement() === true);
